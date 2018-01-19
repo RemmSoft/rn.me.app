@@ -1,22 +1,10 @@
 import React, { Component } from "react";
 import { ImageBackground, View, StatusBar } from "react-native";
 import {
-  Container,
-  Button,
-  H3,
-  Text,
-  Header,
-  Title,
-  Content,
-  Item,
-  Label,
-  Input,
-  Body,
-  Left,
-  Right,
-  Icon,
-  Form
+  Container,Button,H3,Text,Header,Title,Content,Item,Tab,Tabs,
+  TabHeading,Label,Input,Body,Left,Right,Icon,Form,Card,CardItem
 } from "native-base";
+
 
 import styles from "./styles";
 
@@ -32,29 +20,67 @@ class Home extends Component {
           <View style={styles.logoContainer}>
 
           </View>
-          <View style={{ marginBottom: 80 }}>
+          <Tabs style={{ elevation: 2 }}>
+          <Tab
+            heading={
+              <TabHeading>
+                <Icon name="camera" />
+                <Text>Login</Text>
+              </TabHeading>
+            }
+          >
           <Content>
-            <Form>
-              <Item floatingLabel>
-                <Label>Username</Label>
-                <Input />
-              </Item>
-              <Item floatingLabel last>
-                <Label>Password</Label>
-                <Input secureTextEntry />
-              </Item>
-            </Form>
-            <Button block style={{ margin: 15, marginTop: 50 }}>
-              <Text>Sign In</Text>
-            </Button>
-          </Content>
-            <Button
-              style={{ backgroundColor: "#6FAF98", alignSelf: "center" }}
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
-            >
-              <Text>Lets Go!</Text>
-            </Button>
-          </View>
+          <Form>
+            <Item floatingLabel>
+              <Label>Email</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input secureTextEntry />
+            </Item>
+          </Form>
+          <Button block style={styles.button}>
+            <Text>Sign In</Text>
+          </Button>
+        </Content>
+          </Tab>
+          <Tab
+            heading={
+              <TabHeading>
+                <Text>Register</Text>
+              </TabHeading>
+            }
+          >
+           <Content>
+          <Form>
+          <Item floatingLabel>
+              <Label>Name</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel>
+              <Label>Email</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Password</Label>
+              <Input secureTextEntry />
+            </Item>
+            <Item floatingLabel>
+              <Label>Phone</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel>
+              <Label>UserType</Label>
+              <Input />
+            </Item>
+          </Form>
+          <Button block style={styles.button}>
+            <Text>Sign Up</Text>
+          </Button>
+        </Content>
+          </Tab>
+        </Tabs>
         </ImageBackground>
       </Container>
     );
