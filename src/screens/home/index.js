@@ -25,7 +25,7 @@ const launchscreenLogo = require("../../assets/logo-kitchen-sink.png");
 
 class Home extends Component {
   render() {
-    return (  
+    return (   
       <Container>
         <StatusBar barStyle="light-content" />
         <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
