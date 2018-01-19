@@ -16,7 +16,7 @@ import {
   Right,
   Icon,
   Form
-} from "native-base";
+} from "native-base"; 
 
 import styles from "./styles";
 
