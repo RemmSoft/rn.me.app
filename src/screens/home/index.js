@@ -56,23 +56,23 @@ class Home extends Component {
           <Form>
           <Item floatingLabel>
               <Label>Name</Label>
-              <Input />
+              <Input style={styles.colorWhite}/>
             </Item>
             <Item floatingLabel>
               <Label>Email</Label>
-              <Input />
+              <Input style={styles.colorWhite}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input secureTextEntry />
+              <Input secureTextEntry style={styles.colorWhite}/>
             </Item>
             <Item floatingLabel>
               <Label>Phone</Label>
-              <Input />
+              <Input style={styles.colorWhite}/>
             </Item>
             <Item floatingLabel>
               <Label>UserType</Label>
-              <Input />
+              <Input style={styles.colorWhite}/>
             </Item>
           </Form>
           <Button block style={styles.button}>
