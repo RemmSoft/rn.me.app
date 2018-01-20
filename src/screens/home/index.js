@@ -10,6 +10,10 @@ import styles from "./styles";
 
 const launchscreenBg = require("../../assets/launchscreen-bg.png");
 const launchscreenLogo = require("../../assets/logo-kitchen-sink.png");
+// tab bar altındaki indicator rengini verdiğimiz alan
+const tabProps = {
+  tabBarUnderlineStyle: { backgroundColor: '#6FAF98' }
+};
 
 class Home extends Component {
   render() {
@@ -20,11 +24,10 @@ class Home extends Component {
           <View style={styles.logoContainer}>
 
           </View>
-          <Tabs style={{ elevation: 2 }}>
+          <Tabs style={{ elevation: 2}} {...tabProps}>
           <Tab
             heading={
               <TabHeading>
-                <Icon name="camera" />
                 <Text>Login</Text>
               </TabHeading>
             }
