@@ -27,8 +27,11 @@ export default {
     marginTop: 5
   },
   button:{
-    margin: 15, 
+    margin: 15,
     marginTop: 50,
     backgroundColor: "#6FAF98"
+  },
+  colorWhite:{
+    color: "white"
   }
 };

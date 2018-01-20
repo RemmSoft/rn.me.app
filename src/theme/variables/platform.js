@@ -166,7 +166,7 @@ export default {
   inputHeightBase: 50,
   inputPaddingLeft: 5,
   get inputColor() {
-    return this.textColor;
+    return "white";
   },
   get inputColorPlaceholder() {
     return "#575757";

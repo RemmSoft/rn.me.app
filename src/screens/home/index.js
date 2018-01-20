@@ -13,7 +13,7 @@ const launchscreenLogo = require("../../assets/logo-kitchen-sink.png");
 
 class Home extends Component {
   render() {
-    return (   
+    return (
       <Container>
         <StatusBar barStyle="light-content" />
         <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
@@ -33,11 +33,11 @@ class Home extends Component {
           <Form>
             <Item floatingLabel>
               <Label>Email</Label>
-              <Input />
+              <Input style={styles.colorWhite}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input secureTextEntry />
+              <Input secureTextEntry style={styles.colorWhite}/>
             </Item>
           </Form>
           <Button block style={styles.button}>
