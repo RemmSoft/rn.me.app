@@ -21,6 +21,9 @@ export default {
     width: 280,
     height: 100
   },
+  errorTextStyle:{
+    color:'white'
+  },
   text: {
     color: "#FFFFFF",
     bottom: 6,

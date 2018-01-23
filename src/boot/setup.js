@@ -4,19 +4,11 @@ import { StyleProvider } from "native-base";
 import * as firebase from 'firebase';
 
 
+
 import App from "../App";
 import getTheme from "../theme/components";
 import variables from "../theme/variables/commonColor";
 
-var config = {
-    apiKey: "AIzaSyCUOrj5zRsyvP7UbCQlrP-gzfwhe2dxmhg",
-    authDomain: "makaseller-e2305.firebaseapp.com",
-    databaseURL: "https://makaseller-e2305.firebaseio.com",
-    projectId: "makaseller-e2305",
-    storageBucket: "makaseller-e2305.appspot.com",
-    messagingSenderId: "576889564677"
-  };
-const firebaseApp = firebase.initializeApp(config);
 
 export default class Setup extends Component {
   constructor() {
@@ -27,6 +19,14 @@ export default class Setup extends Component {
   }
   componentWillMount() {
     this.loadFonts();
+    firebase.initializeApp({
+      apiKey: "AIzaSyBmIgCRWyYm3d9h8vAr4PpnK2WtzGr86ug",
+      authDomain: "rn-me-6c102.firebaseapp.com",
+      databaseURL: "https://rn-me-6c102.firebaseio.com",
+      projectId: "rn-me-6c102",
+      storageBucket: "rn-me-6c102.appspot.com",
+      messagingSenderId: "397297760244"
+    });
   }
   async loadFonts() {
     await Expo.Font.loadAsync({
