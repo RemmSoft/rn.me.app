@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {TouchableOpacity,Image} from "react-native";
+import {TouchableOpacity,Image,StatusBar} from "react-native";
 import {
   Container,
   Header,
@@ -14,15 +14,18 @@ import {
   Right,
   View
 } from "native-base";
+
 import styles from "./styles";
 
 const logo = require("../../assets/splashscreen.png");
 const cover = require("../../assets/web-cover1.jpg");
 const kapak=require("../../assets/cover.png");
-class NHThumbnail extends Component {
+
+class Dashboard extends Component {
   render() {
     return (
       <Container style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <Header>
           <Left>
             <Button
@@ -33,18 +36,19 @@ class NHThumbnail extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Thumbnail</Title>
+            <Title>Bana Özel</Title>
           </Body>
           <Right />
         </Header>
 
         <Content padder>
-          <View style={{ flex: 1, alignItems: "center",flexDirection: 'row' }}>
+          <View style={{ flex: 1,flexDirection: 'row' }}>
+           <Body style={{alignItems: 'center'}}>
             <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("Home")}>
               <Image style={styles.stretch} source={kapak} />
-              <Text style={styles.textStyles}>Bana Özel</Text>
+              <Text style={styles.textStyles}>Makas Ellerim</Text>
             </TouchableOpacity>
-            
+           </Body> 
             <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStyles")}>
               <Image style={styles.stretch} source={kapak}/>
               <Text style={styles.textStyles}>Yakınımda</Text>
@@ -56,4 +60,4 @@ class NHThumbnail extends Component {
   }
 }
 
-export default NHThumbnail;
+export default Dashboard;
