@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body,Badge } from 'native-base';
+import {TouchableOpacity,Image} from "react-native";
+
 
 import styles from "./styles";
 
 const cover=require("../../assets/barber.png");
  
-export default class ListThumbnailExample extends Component {
+export default class HairStyles extends Component {
   render() {
     return (
       <Container>
@@ -15,8 +17,10 @@ export default class ListThumbnailExample extends Component {
             <ListItem>
               <Thumbnail size={70} source={cover} />
               <Body>
-                <Text>Ekol Berber</Text>
-                <Text note>Saç, sakal, ağda</Text>
+               <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStylePage")}>
+               <Text>Ekol Güzellik Salonu</Text>
+               <Text note>Saç, sakal, ağda</Text>
+               </TouchableOpacity>
               </Body>
               <Badge info>
                   <Text>2</Text>
@@ -25,9 +29,11 @@ export default class ListThumbnailExample extends Component {
             <ListItem>
               <Thumbnail size={70} source={cover} />
               <Body>
-                <Text>Barber Güzellik Salonu</Text>
-                <Text note>Saç, sakal, ağda</Text>
-              </Body>
+                <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStylePage")}>
+                  <Text>Barber Güzellik Salonu</Text>
+                  <Text note>Saç, sakal, ağda</Text>
+                </TouchableOpacity>
+             </Body>
               <Badge info>
                   <Text>5</Text>
               </Badge>

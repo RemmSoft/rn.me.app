@@ -4,10 +4,18 @@ import { StackNavigator, DrawerNavigator } from "react-navigation";
 
 import SideBar from "./screens/sidebar";
 import Home from "./screens/home/";
+import Dashboard from "./screens/dashboard";
+import HairStyles from "./screens/hairStyles";
+import HairStylePage from "./screens/hairStylePage";
+
+
 
 const Drawer = DrawerNavigator(
   {
-    Home: {screen: Home}
+    Home: {screen: Home},
+    Dashboard:{screen: Dashboard},
+    HairStyles:{screen: HairStyles},
+    HairStylePage:{screen: HairStylePage}
   },
   {
     initialRouteName: "Home",

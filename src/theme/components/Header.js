@@ -131,7 +131,7 @@ export default (variables = variable) => {
       "NativeBase.Button": {
         ".hasText": {
           marginLeft: -10,
-          height: 30,
+          height: 50,
           "NativeBase.Icon": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize,
