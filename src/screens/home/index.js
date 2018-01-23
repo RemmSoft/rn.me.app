@@ -22,22 +22,35 @@ class Home extends Component {
         super(props);
         this.state = {email: '', password: '', error: '', loading: false };
     }
-    
-    onLoginPress() {
+    writeUserData(userId, name, email, imageUrl) {
+      firebase.database().ref('users/' + userId).set({
+        username: name,
+        email: email,
+        profile_picture : imageUrl
+      });
+    }
+    onSignIn() {
         this.setState({ error: '', loading: true });
 
         const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => { this.props.navigation.navigate("Dashboard"); })
             .catch(() => {
-                //Login was not successful, let's create a new account                
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .then(() => { this.setState({ error: '', loading: false }); })
-                    .catch(() => {
-                        this.setState({ error: 'Yanlış failed.', loading: false });
-                    });
+               
             });
     }
+    onSignUp() {
+      this.setState({ error: '', loading: true });
+
+      const { email, password} = this.state;
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(() => { 
+            console.log("basarılı");
+          })
+          .catch(() => {
+            console.log("basarısız");
+          });
+  }
 
     render() {
         return (
@@ -58,7 +71,7 @@ class Home extends Component {
                   <Content>
                     <Form>
                     <Item floatingLabel >
-                      <Label>Emaias</Label>
+                      <Label>Email</Label>
                       <Input style={styles.colorWhite} value={this.state.email}
                     onChangeText={email => this.setState({ email })}/>
                     </Item>
@@ -68,7 +81,7 @@ class Home extends Component {
                     onChangeText={password => this.setState({ password })}/>
                     </Item>
                     </Form>
-                  <Button block style={styles.button}onPress={this.onLoginPress.bind(this)}>
+                  <Button block style={styles.button}onPress={this.onSignIn.bind(this)}>
                     <Text>Giriş Yap</Text>
                   </Button>
                   <Text style={styles.errorTextStyle}>{this.state.error}</Text>
@@ -83,29 +96,20 @@ class Home extends Component {
                 >
                   <Content>
                     <Form>
-                    <Item floatingLabel>
-                        <Label>Name</Label>
-                        <Input style={styles.colorWhite}/>
-                      </Item>
-                      <Item floatingLabel>
-                        <Label>Email</Label>
-                        <Input style={styles.colorWhite}/>
-                      </Item>
-                      <Item floatingLabel>
-                        <Label>Password</Label>
-                        <Input secureTextEntry style={styles.colorWhite}/>
-                      </Item>
-                      <Item floatingLabel>
-                        <Label>Phone</Label>
-                        <Input style={styles.colorWhite}/>
-                      </Item>
-                      <Item floatingLabel>
-                        <Label>UserType</Label>
-                        <Input style={styles.colorWhite}/>
-                      </Item>
+                    
+                    <Item floatingLabel >
+                    <Label>Email</Label>
+                    <Input style={styles.colorWhite} value={this.state.email}
+                  onChangeText={email => this.setState({ email })}/>
+                  </Item> 
+                  <Item floatingLabel >
+                  <Label>Password</Label>
+                  <Input secureTextEntry={true} style={styles.colorWhite} value={this.state.password}
+                onChangeText={password => this.setState({ password })}/>
+                </Item>                                  
                     </Form>
-                    <Button block style={styles.button}>
-                      <Text>Sign Up</Text>
+                    <Button block style={styles.button}onPress={this.onSignUp.bind(this)}>
+                      <Text>Kaydol</Text>
                     </Button>
                   </Content>
                 </Tab>

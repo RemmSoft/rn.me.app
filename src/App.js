@@ -24,7 +24,6 @@ const Drawer = DrawerNavigator(
     },
     contentComponent: props => <SideBar {...props} />
   }
-
 );
 
 const AppNavigator = StackNavigator(

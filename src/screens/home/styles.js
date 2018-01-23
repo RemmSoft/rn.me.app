@@ -35,6 +35,6 @@ export default {
     backgroundColor: "#6FAF98"
   },
   colorWhite:{
-    color: "white"
+    color: "white",
   }
 };
