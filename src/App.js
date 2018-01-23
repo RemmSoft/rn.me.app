@@ -18,7 +18,7 @@ const Drawer = DrawerNavigator(
     HairStylePage:{screen: HairStylePage}
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Dashboard",
     contentOptions: {
       activeTintColor: "#e91e63"
     },

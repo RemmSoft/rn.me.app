@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body,Badge } from 'native-base';
+import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body,Badge,Left,Title,Button,Icon,Right } from 'native-base';
 import {TouchableOpacity,Image} from "react-native";
 
 
@@ -11,7 +11,18 @@ export default class HairStyles extends Component {
   render() {
     return (
       <Container>
-        <Header />
+        <Header>
+          <Left>
+            <Button  transparent
+              onPress={() => this.props.navigation.navigate("Dashboard")}>
+              <Icon name="ios-swap" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Ata MEN’S</Title>
+          </Body>
+          <Right />
+        </Header>
         <Content>
           <List style={styles.imageContainer}>
             <ListItem>

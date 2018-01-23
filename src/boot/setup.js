@@ -42,7 +42,7 @@ export default class Setup extends Component {
     }
     return (
       <StyleProvider style={getTheme(variables)}>
-        <App />
+        <App/>
       </StyleProvider>
     );
   }

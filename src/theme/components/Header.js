@@ -1,4 +1,4 @@
-import { PixelRatio } from "react-native";
+import { PixelRatio,StatusBar } from "react-native";
 
 import variable from "./../variables/platform";
 
@@ -300,7 +300,7 @@ export default (variables = variable) => {
       flexDirection: "row",
       justifyContent: "flex-end"
     },
-    backgroundColor: variables.toolbarDefaultBg,
+    backgroundColor: "#ef5350",
     flexDirection: "row",
     paddingHorizontal: 10,
     justifyContent: "center",
@@ -308,7 +308,7 @@ export default (variables = variable) => {
     borderBottomWidth:
       platform === "ios" ? 1 / PixelRatio.getPixelSizeForLayoutSize(1) : 0,
     borderBottomColor: variables.toolbarDefaultBorder,
-    height: variables.toolbarHeight,
+    height: variables.toolbarHeight+StatusBar.currentHeight,
     elevation: 3,
     shadowColor: platformStyle === "material" ? "#000" : undefined,
     shadowOffset:
