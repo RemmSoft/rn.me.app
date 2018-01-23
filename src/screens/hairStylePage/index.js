@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right,Title } from 'native-base';
 
 const kapak=require("../../assets/cover.png");
 
@@ -8,7 +8,18 @@ export default class HairStylePage extends Component {
   render() {
     return (
       <Container>
-        <Header />
+          <Header>
+          <Left>
+            <Button  transparent
+              onPress={() => this.props.navigation.navigate("HairStyles")}>
+              <Icon name="ios-swap" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>Ata MEN’S</Title>
+          </Body>
+          <Right />
+        </Header>
         <Content>
           <Card>
             <CardItem>

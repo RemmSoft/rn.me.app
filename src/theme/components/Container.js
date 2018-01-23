@@ -7,7 +7,6 @@ export default (variables = variable) => {
   const theme = {
     flex: 1,
     height: Platform.OS === "ios" ? deviceHeight : deviceHeight - 20,
-    marginTop:StatusBar.currentHeight
   };
 
   return theme;
