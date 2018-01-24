@@ -7,6 +7,7 @@ import Home from "./screens/home/";
 import Dashboard from "./screens/dashboard";
 import HairStyles from "./screens/hairStyles";
 import HairStylePage from "./screens/hairStylePage";
+import Profile from "./screens/profile";
 
 
 
@@ -15,10 +16,12 @@ const Drawer = DrawerNavigator(
     Home: {screen: Home},
     Dashboard:{screen: Dashboard},
     HairStyles:{screen: HairStyles},
-    HairStylePage:{screen: HairStylePage}
+    HairStylePage:{screen: HairStylePage},
+    Profile :{screen: Profile},
+    Profile: {screen:Profile}
   },
   {
-    initialRouteName: "Dashboard",
+    initialRouteName: "Home",
     contentOptions: {
       activeTintColor: "#e91e63"
     },

@@ -42,8 +42,8 @@ class Dashboard extends Component {
         </Header>
 
         <Content padder>
-          <View style={{ flex: 1,flexDirection: 'row' }}>
-            <TouchableOpacity style={{flexDirection: 'column',justifyContent :'center'}} onPress={() => this.props.navigation.navigate("HairStyles")}>
+          <View style={{ flex: 1,flexDirection: 'row',justifyContent :'center' }}>
+            <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStyles")}>
               <Image style={styles.stretch} source={kapak}/>
               <Text style={styles.textStyles}>Makas Ellerim</Text>
             </TouchableOpacity>
