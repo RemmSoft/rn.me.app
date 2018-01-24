@@ -34,7 +34,7 @@ class Home extends Component {
 
         const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => { this.props.navigation.navigate("Dashboard"); })
+            .then(() => { this.props.navigation.navigate("Profile"); })
             .catch(() => {
                
             });
