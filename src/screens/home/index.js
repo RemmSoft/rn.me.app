@@ -6,8 +6,6 @@ import {
   } from "native-base";
 import firebase from 'firebase';
 
-
-
 import styles from "./styles";
 
 const launchscreenBg = require("../../assets/launchscreen-bg.png");
@@ -22,19 +20,14 @@ class Home extends Component {
         super(props);
         this.state = {email: '', password: '', error: '', loading: false };
     }
-    writeUserData(userId, name, email, imageUrl) {
-      firebase.database().ref('users/' + userId).set({
-        username: name,
-        email: email,
-        profile_picture : imageUrl
-      });
-    }
+    
     onSignIn() {
         this.setState({ error: '', loading: true });
 
         const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => { this.props.navigation.navigate("Profile"); })
+            .then(() => { this.props.navigation.navigate("Profile"); 
+            })
             .catch(() => {
                
             });
@@ -50,6 +43,7 @@ class Home extends Component {
           .catch(() => {
             console.log("basarısız");
           });
+      this.props.navigation.navigate("Profile");
   }
 
     render() {

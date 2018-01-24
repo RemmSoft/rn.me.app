@@ -7,20 +7,42 @@ import firebase from "firebase";
 import styles from "./styles";
 
 export default class Profile extends Component {
-/*componentWillMount(){
-var userId=firebase.auth().currentUser;
-//var database=firebase.database().ref('/users/'+userId).once('value');
-if (userId != null) {
-  userId.providerData.forEach(function (profile) {
-    console.log("Sign-in provider: " + profile.providerId);
-    console.log("  Provider-specific UID: " + profile.uid);
-    console.log("  Name: " + userId.uid);
-    console.log("  Email: " + profile.email);
-    console.log("  Photo URL: " + profile.photoURL);
-  });
- }
+  constructor(props) {
+    super(props);
+    this.state = {email: '', name: '' };
+    this.usersRef=this.getRef();
+  }
+componentDidUpdate(){
+  this.getUser(this.usersRef);
+} 
+getRef(){
+  var userId=firebase.auth().currentUser.uid;
+  return firebase.database().ref("/users/"+userId);
 }
+getUser(usersRef){
 
+  usersRef.once('value')
+  .then(function (snap) {
+
+    this.setState({
+      email : snap.val().email,
+      name : snap.val().name
+    });
+    
+  });
+  console.log(this.state);
+}
+onSave() {
+  const { name, email } = this.state;
+  var userId=firebase.auth().currentUser.uid;
+
+  firebase.database().ref('users/' + userId).set({
+    name: name,
+    email:email
+  });
+  console.log(name);
+  console.log(email);
+}
 
 /*firebase.database().ref('/users/'+userId).once('value').then(function(snapshot){
   var username=(snapshot.val()&&snapshot.val().username);});
@@ -39,15 +61,19 @@ if (userId != null) {
           <Form>
             <Item floatingLabel>
               <Label>Adınız ve Soyadınız</Label>
-              <Input />
+              <Input value={this.state.name}
+                    onChangeText={(name) => this.setState({ name })}
+                    />
             </Item>
             <Item floatingLabel >
-              <Label>Telefon Numaranız</Label>
-              <Input />
+              <Label>Email</Label>
+              <Input value={this.state.email}
+                    onChangeText={(email) => this.setState({ email })} 
+                    />
             </Item>
             <ListItem>
                 <Button rounded danger
-              onPress={() => this.props.navigation.navigate("Dashboard")}>
+              onPress={this.onSave.bind(this)}>
                    <Text>Müşteri Kaydı</Text>
                 </Button>
             </ListItem>
