@@ -9,45 +9,37 @@ import styles from "./styles";
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', name: '' };
-    this.usersRef=this.getRef();
+    this.state = {
+      name: '',
+      email: ''
+    }
+
+    this.getUser(this.getRef());
   }
-componentDidUpdate(){
-  this.getUser(this.usersRef);
-} 
-getRef(){
-  var userId=firebase.auth().currentUser.uid;
-  return firebase.database().ref("/users/"+userId);
-}
-getUser(usersRef){
+  getRef(){
+    let userId=firebase.auth().currentUser.uid;
+    return firebase.database().ref("/users/"+userId);
+  }
+  getUser(userRef){
 
-  usersRef.once('value')
-  .then(function (snap) {
-
-    this.setState({
-      email : snap.val().email,
-      name : snap.val().name
+    userRef.once('value').then((snap) => {
+      this.setState({
+        name: snap.val().name,
+        email: snap.val().email
+      })
     });
-    
-  });
-  console.log(this.state);
-}
-onSave() {
-  const { name, email } = this.state;
-  var userId=firebase.auth().currentUser.uid;
+  }
+  onSave() {
+    const { name, email } = this.state;
+    userId=firebase.auth().currentUser.uid;
 
-  firebase.database().ref('users/' + userId).set({
-    name: name,
-    email:email
-  });
-  console.log(name);
-  console.log(email);
-}
-
-/*firebase.database().ref('/users/'+userId).once('value').then(function(snapshot){
-  var username=(snapshot.val()&&snapshot.val().username);});
- console.log(username,userId);
-} */
+    firebase.database().ref('users/' + userId).set({
+      name: name,
+      email:email
+    });
+    console.log(name);
+    console.log(email);
+  }
   render() {
     return (
       <Container>
