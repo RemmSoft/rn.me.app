@@ -43,7 +43,7 @@ class Home extends Component {
 
             firebase.database().ref('users/' + userId).set({
               name: "",
-              email:""
+              phone:""
             });
             this.props.navigation.navigate("Register");
           })
