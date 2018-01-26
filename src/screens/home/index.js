@@ -18,33 +18,39 @@ const tabProps = {
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {email: '', password: '', error: '', loading: false };
+        this.state = {email: '', password: '', error:''};
     }
     
     onSignIn() {
-        this.setState({ error: '', loading: true });
-
+        
         const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(() => { this.props.navigation.navigate("Profile"); 
+            .then(() => { 
+              this.props.navigation.navigate("Dashboard"); 
             })
             .catch(() => {
-               
+              this.setState({ error: 'Giriş Yapılamadı'});
             });
     }
+    
     onSignUp() {
-      this.setState({ error: '', loading: true });
-
+      
       const { email, password} = this.state;
       firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(() => { 
-            console.log("basarılı");
+
+            let userId=firebase.auth().currentUser.uid;
+
+            firebase.database().ref('users/' + userId).set({
+              name: "",
+              email:""
+            });
+            this.props.navigation.navigate("Register");
           })
           .catch(() => {
-            console.log("basarısız");
+            this.setState({ error: 'Şifre en az 6 haneli olmak zorundadır.'});
           });
-      this.props.navigation.navigate("Profile");
-  }
+    }
 
     render() {
         return (
@@ -90,7 +96,6 @@ class Home extends Component {
                 >
                   <Content>
                     <Form>
-                    
                     <Item floatingLabel >
                     <Label>Email</Label>
                     <Input style={styles.colorWhite} value={this.state.email}
@@ -105,6 +110,7 @@ class Home extends Component {
                     <Button block style={styles.button}onPress={this.onSignUp.bind(this)}>
                       <Text>Kaydol</Text>
                     </Button>
+                    <Text style={styles.errorTextStyle}>{this.state.error}</Text>
                   </Content>
                 </Tab>
               </Tabs>
