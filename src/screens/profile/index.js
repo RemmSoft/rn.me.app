@@ -11,7 +11,10 @@ export default class Profile extends Component {
     super(props);
     this.state = {
       name: '',
-      email: ''
+      email: '',
+      phoneNumber: '',
+      userVisible:false,
+      userType:0
     }
 
     this.getUser(this.getRef());
@@ -25,17 +28,21 @@ export default class Profile extends Component {
     userRef.once('value').then((snap) => {
       this.setState({
         name: snap.val().name,
-        email: snap.val().email
+        email: snap.val().email,
+        phoneNumber:snap.val().phoneNumber,
+        userType:snap.val().userType,          
       })
+      console.log(this.state); 
     });
   }
   onSave() {
-    const { name, email } = this.state;
+    const { name, email,phoneNumber } = this.state;
     userId=firebase.auth().currentUser.uid;
 
     firebase.database().ref('users/' + userId).set({
       name: name,
-      email:email
+      email:email,
+      phoneNumber:phoneNumber
     });
     console.log(name);
     console.log(email);
@@ -63,17 +70,15 @@ export default class Profile extends Component {
                     onChangeText={(email) => this.setState({ email })} 
                     />
             </Item>
-            <ListItem>
-                <Button rounded danger
-              onPress={this.onSave.bind(this)}>
-                   <Text>Müşteri Kaydı</Text>
-                </Button>
-            </ListItem>
-            <ListItem>
-                <Button iconRight rounded>
-                     <Text>Berber Kaydı</Text>
-                </Button>
-            </ListItem>     
+            <Item floatingLabel >
+              <Label>Telefon Numaranız</Label>
+              <Input value={this.state.phoneNumber}
+                    onChangeText={(phoneNumber) => this.setState({ phoneNumber })} 
+                    />
+            </Item>
+            <Button block style={styles.button}>
+                 <Text>Kaydet</Text>
+            </Button>  
           </Form>
         </Content>
       </Container>

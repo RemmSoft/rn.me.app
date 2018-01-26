@@ -14,6 +14,7 @@ import {
   Right,
   View
 } from "native-base";
+import firebase from "firebase";
 
 import styles from "./styles";
 
@@ -22,6 +23,28 @@ const cover = require("../../assets/web-cover1.jpg");
 const kapak=require("../../assets/cover.png");
 
 class Dashboard extends Component {
+  constructor(props){
+    super(props);
+    this.state={userType:0};
+    
+  }
+  getRef(){
+    let userId=firebase.auth().currentUser.uid;
+    return firebase.database().ref("/users/"+userId);
+  }
+  getUser(userRef){
+    userRef.once('value').then((snap) => {
+      this.setState({
+        userType:snap.val().userType          
+      })
+      if(this.state.userType==0){
+        this.props.navigation.navigate('Profile');
+     }else{
+       this.props.navigation.navigate('ProfilBerber');
+     }
+    });
+ 
+  }
   render() {
     return (
       <Container style={styles.container}>
@@ -30,7 +53,7 @@ class Dashboard extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}
+              onPress={() => this.props.navigate.navigate('Drawer')}
             >
               <Icon name="menu" />
             </Button>
@@ -38,7 +61,14 @@ class Dashboard extends Component {
           <Body>
             <Title>Bana Özel</Title>
           </Body>
-          <Right />
+          <Right>
+          <Button
+              transparent
+              onPress={() =>this.getUser(this.getRef())}
+            >
+              <Icon name="home" />
+            </Button>
+          </Right>
         </Header>
 
         <Content padder>
