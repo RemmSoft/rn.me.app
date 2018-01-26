@@ -28,10 +28,12 @@ class Dashboard extends Component {
     this.state={userType:0};
     
   }
+
   getRef(){
     let userId=firebase.auth().currentUser.uid;
     return firebase.database().ref("/users/"+userId);
   }
+  
   getUser(userRef){
     userRef.once('value').then((snap) => {
       this.setState({
@@ -45,6 +47,7 @@ class Dashboard extends Component {
     });
  
   }
+
   render() {
     return (
       <Container style={styles.container}>

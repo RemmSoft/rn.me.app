@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, Label,Text,Button, View,Title,Left,Right } from 'native-base';
 import firebase from "firebase";
 
-
-
 import styles from "./styles";
 
 export default class Profile extends Component {
@@ -12,41 +10,38 @@ export default class Profile extends Component {
     this.state = {
       name: '',
       email: '',
-      phoneNumber: '',
-      userVisible:false,
-      userType:0
+      phone: ''
     }
 
     this.getUser(this.getRef());
   }
+
   getRef(){
     let userId=firebase.auth().currentUser.uid;
     return firebase.database().ref("/users/"+userId);
   }
+  
   getUser(userRef){
-
     userRef.once('value').then((snap) => {
       this.setState({
         name: snap.val().name,
         email: snap.val().email,
-        phoneNumber:snap.val().phoneNumber,
-        userType:snap.val().userType,          
+        phone: snap.val().phone
       })
-      console.log(this.state); 
     });
   }
+
   onSave() {
-    const { name, email,phoneNumber } = this.state;
+    const { name, email, phone } = this.state;
     userId=firebase.auth().currentUser.uid;
 
     firebase.database().ref('users/' + userId).set({
       name: name,
-      email:email,
-      phoneNumber:phoneNumber
+      email: email,
+      phone: phone
     });
-    console.log(name);
-    console.log(email);
   }
+
   render() {
     return (
       <Container>
@@ -72,11 +67,11 @@ export default class Profile extends Component {
             </Item>
             <Item floatingLabel >
               <Label>Telefon Numaranız</Label>
-              <Input value={this.state.phoneNumber}
-                    onChangeText={(phoneNumber) => this.setState({ phoneNumber })} 
+              <Input value={this.state.phone}
+                    onChangeText={(phone) => this.setState({ phone })} 
                     />
             </Item>
-            <Button block style={styles.button}>
+            <Button block style={styles.button} onPress={this.onSave.bind(this)}>
                  <Text>Kaydet</Text>
             </Button>  
           </Form>
