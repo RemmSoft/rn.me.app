@@ -1,44 +1,52 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, Label,Text,Button, View,Title,Left,Right } from 'native-base';
+import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, 
+  Label,Text,Button, View,Title,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
 import firebase from "firebase";
 
 import styles from "./styles";
 
+const tabProps = {
+  tabBarUnderlineStyle: { backgroundColor: '#ef5350' }
+};
 export default class Register extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      email: ''
-    }
-    this.getUser(this.getRef());
-  }
-  
-  getRef(){
-    let userId=firebase.auth().currentUser.uid;
-    return firebase.database().ref("/users/"+userId);
+    this.state = {userType:'', name: '', phone: '', workPlace:'', workAddress:'', workPhone:'', 
+    latitude:'', longtitude:'', createdAt:'', updateAt:'', status:'', ownerId:'', error: ''};
   }
 
-  getUser(userRef){
-
-    userRef.once('value').then((snap) => {
-      this.setState({
-        name: snap.val().name,
-        email: snap.val().email
-      })
-    });
-  }
-
-  onSave() {
-    const { name, email } = this.state;
+  onSaveUser() {
+    const { userType, name, phone} = this.state;
     userId=firebase.auth().currentUser.uid;
-
     firebase.database().ref('users/' + userId).set({
+      userType: 0,
       name: name,
-      email:email
+      phone: phone
     });
-    console.log(name);
-    console.log(email);
+  }
+
+  onSaveBarber() {
+    const { userType, name, phone, workPlace, workAddress, workPhone,
+      latitude, longtitude, createdAt, updateAt, status, ownerId} = this.state;
+
+    userId=firebase.auth().currentUser.uid; 
+    firebase.database().ref('users/' + userId).set({
+      userType: 1,
+      name: name,
+      phone: phone
+    });
+
+    firebase.database().ref('stores/' + userId).set({
+      workPlace: workPlace,
+      workAddress: workAddress,
+      workPhone: workPhone,
+      latitude: "",
+      longtitude: "",
+      createdAt: Date.now(),
+      updateAt: Date.now(),
+      status: 1,
+      ownerId: ""
+    });
   }
   
   render() {
@@ -50,33 +58,78 @@ export default class Register extends Component {
             <Title>Kullanıcı Bilgileri</Title>
           </Body>
         </Header>
-        <Content>
-          <Form>
-            <Item floatingLabel>
-              <Label>Adınız ve Soyadınız</Label>
-              <Input value={this.state.name}
-                    onChangeText={(name) => this.setState({ name })}
-                    />
-            </Item>
-            <Item floatingLabel >
-              <Label>Email</Label>
-              <Input value={this.state.email}
-                    onChangeText={(email) => this.setState({ email })} 
-                    />
-            </Item>
-            <ListItem>
-                <Button rounded danger
-                onPress={this.onSave.bind(this)}>
-                  <Text>Müşteri Kaydı</Text>
-                </Button>
-            </ListItem>
-            <ListItem>
-                <Button iconRight rounded>
-                     <Text>Berber Kaydı</Text>
-                </Button>
-            </ListItem>     
-          </Form>
-        </Content>
+        
+        <Tabs style={{ elevation: 2}} {...tabProps}>
+                <Tab
+                  heading={
+                    <TabHeading>
+                      <Text style={styles.tabText}>Müşteri</Text>
+                    </TabHeading>
+                  }
+                >
+                  <Content>
+                    <Form>
+                    <Item floatingLabel >
+                      <Label>Ad Soyad</Label>
+                      <Input value={this.state.name}
+                    onChangeText={name => this.setState({ name })}/>
+                    </Item>
+                    <Item floatingLabel >
+                      <Label>Telefon</Label>
+                      <Input value={this.state.phone}
+                    onChangeText={phone => this.setState({ phone })}/>
+                    </Item>
+                    </Form>
+                    <Button block style={styles.button} onPress={this.onSaveUser.bind(this)}
+                    >
+                    <Text>Müşteri Kaydı</Text>
+                  </Button>
+                  <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+                  </Content>
+                </Tab>
+                <Tab
+                  heading={
+                    <TabHeading>
+                      <Text style={styles.tabText}>Berber</Text>
+                    </TabHeading>
+                  }
+                >
+                  <Content>
+                    <Form>
+                    <Item floatingLabel >
+                      <Label>Ad Soyad</Label>
+                      <Input value={this.state.name}
+                    onChangeText={name => this.setState({ name })}/>
+                    </Item>
+                    <Item floatingLabel >
+                      <Label>Cep Tel</Label>
+                      <Input value={this.state.phone}
+                    onChangeText={phone => this.setState({ phone })}/>
+                    </Item>
+                    <Item floatingLabel >
+                      <Label>İş Yeri İsmi</Label>
+                      <Input value={this.state.workPlace}
+                    onChangeText={workPlace => this.setState({ workPlace })}/>
+                    </Item>  
+                    <Item floatingLabel >
+                      <Label>İş Adresi</Label>
+                      <Input value={this.state.workAddress}
+                    onChangeText={workAddress => this.setState({ workAddress })}/>
+                    </Item>
+                    <Item floatingLabel >
+                      <Label>İş Telefon</Label>
+                      <Input value={this.state.workPhone}
+                    onChangeText={workPhone => this.setState({ workPhone })}/>
+                    </Item>
+                    </Form>
+                    <Button block style={styles.button} onPress={this.onSaveBarber.bind(this)}
+                    >
+                      <Text>Berber Kaydı</Text>
+                    </Button>
+                    <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+                  </Content>
+                </Tab>
+              </Tabs>
       </Container>
     );
   }
