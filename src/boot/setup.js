@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import { StyleProvider } from "native-base";
 import * as firebase from 'firebase';
 
-
-
 import App from "../App";
 import getTheme from "../theme/components";
 import variables from "../theme/variables/commonColor";
