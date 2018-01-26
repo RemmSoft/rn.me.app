@@ -7,37 +7,31 @@ import styles from "./styles";
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      email: '',
-      phone: ''
-    }
+    this.state = {userType:'', name: '', phone: ''}
 
-    this.getUser(this.getRef());
+    this.getUser();
   }
 
-  getRef(){
+  getUser(){
     let userId=firebase.auth().currentUser.uid;
-    return firebase.database().ref("/users/"+userId);
-  }
-  
-  getUser(userRef){
+    let userRef=firebase.database().ref("/users/"+userId);
     userRef.once('value').then((snap) => {
       this.setState({
         name: snap.val().name,
-        email: snap.val().email,
         phone: snap.val().phone
       })
     });
   }
 
   onSave() {
-    const { name, email, phone } = this.state;
+    const { userType, name, email, phone } = this.state;
     userId=firebase.auth().currentUser.uid;
+    mail=firebase.auth().currentUser.email;
 
     firebase.database().ref('users/' + userId).set({
+      userType: 0,
       name: name,
-      email: email,
+      email: mail,
       phone: phone
     });
   }
@@ -57,12 +51,6 @@ export default class Profile extends Component {
               <Label>Adınız ve Soyadınız</Label>
               <Input value={this.state.name}
                     onChangeText={(name) => this.setState({ name })}
-                    />
-            </Item>
-            <Item floatingLabel >
-              <Label>Email</Label>
-              <Input value={this.state.email}
-                    onChangeText={(email) => this.setState({ email })} 
                     />
             </Item>
             <Item floatingLabel >

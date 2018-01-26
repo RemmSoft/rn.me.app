@@ -41,9 +41,11 @@ class Dashboard extends Component {
       })
       if(this.state.userType==0){
         this.props.navigation.navigate('Profile');
-     }else{
-       this.props.navigation.navigate('ProfilBerber');
-     }
+      }
+      else if(this.state.userType==1)
+      {
+        this.props.navigation.navigate('ProfilBerber');
+      }
     });
  
   }
