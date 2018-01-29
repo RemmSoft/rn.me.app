@@ -28,8 +28,7 @@ export default class EmployeeList extends Component {
             snapshot.forEach((childSnapshot)=> {
                 childData.push({
                 name: childSnapshot.val().name,
-                phone: childSnapshot.val().phone,
-                _key: childSnapshot.key
+                phone: childSnapshot.val().phone
                 });
             });
 
@@ -47,7 +46,7 @@ export default class EmployeeList extends Component {
                    <Text >{item.name}</Text>
                    <Text note>{item.phone}</Text>
                   </TouchableOpacity>
-                  <Button full danger onPress={}>
+                  <Button full danger >
                     <Icon active name="trash" />
                   </Button>
                 </Body>
