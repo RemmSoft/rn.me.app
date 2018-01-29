@@ -12,7 +12,7 @@ export default{
     },
     button:{
         margin: 15,
-        marginTop: 25,
+        marginTop: 15,
         backgroundColor: "#ef5350"
     },
     btnWorker:{

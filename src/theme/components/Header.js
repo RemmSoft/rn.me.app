@@ -86,7 +86,7 @@ export default (variables = variable) => {
           color: variables.dropdownLinkColor,
           fontSize: variables.toolbarSearchIconSize,
           alignItems: "center",
-          marginTop: 2,
+          marginTop: 3,
           paddingRight: 10,
           paddingLeft: 10
         },
@@ -135,7 +135,7 @@ export default (variables = variable) => {
           "NativeBase.Icon": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize,
-            marginTop: 2,
+            marginTop: 3,
             marginRight: 5,
             marginLeft: 2
           },
@@ -148,7 +148,7 @@ export default (variables = variable) => {
           "NativeBase.IconNB": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize,
-            marginTop: 2,
+            marginTop: 3,
             marginRight: 5,
             marginLeft: 2
           }
@@ -158,14 +158,14 @@ export default (variables = variable) => {
           "NativeBase.Icon": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize,
-            marginTop: 2,
+            marginTop: 3,
             marginRight: 2,
             marginLeft: 2
           },
           "NativeBase.IconNB": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize,
-            marginTop: 2,
+            marginTop: 3,
             marginRight: 2,
             marginLeft: 2
           },
@@ -231,7 +231,7 @@ export default (variables = variable) => {
           "NativeBase.Icon": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize - 2,
-            marginTop: 2,
+            marginTop: 3,
             marginRight: 2,
             marginLeft: 5
           },
@@ -243,7 +243,7 @@ export default (variables = variable) => {
           "NativeBase.IconNB": {
             color: variables.toolbarBtnColor,
             fontSize: variables.iconHeaderSize - 2,
-            marginTop: 2,
+            marginTop: 3,
             marginRight: 2,
             marginLeft: 5
           }
@@ -258,7 +258,7 @@ export default (variables = variable) => {
               platform === "ios"
                 ? variables.iconHeaderSize - 6
                 : variables.iconHeaderSize - 2,
-            marginTop: 2,
+            marginTop: 3,
             marginLeft: 2,
             marginRight: 2
           },
@@ -268,7 +268,7 @@ export default (variables = variable) => {
               platform === "ios"
                 ? variables.iconHeaderSize - 6
                 : variables.iconHeaderSize - 2,
-            marginTop: 2,
+            marginTop: 3,
             marginLeft: 2,
             marginRight: 2
           },
@@ -308,7 +308,7 @@ export default (variables = variable) => {
     borderBottomWidth:
       platform === "ios" ? 1 / PixelRatio.getPixelSizeForLayoutSize(1) : 0,
     borderBottomColor: variables.toolbarDefaultBorder,
-    height: variables.toolbarHeight+StatusBar.currentHeight,
+    height: variables.toolbarHeight,
     elevation: 3,
     shadowColor: platformStyle === "material" ? "#000" : undefined,
     shadowOffset:
