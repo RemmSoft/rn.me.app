@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item,Body, Input, 
-  Label,Text,Button, View,Title,Left,Right } from 'native-base';
+import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, 
+  Label,Text,Button, View,Title,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
 import firebase from "firebase";
 
 import styles from "./styles";
 
+const tabProps = {
+  tabBarUnderlineStyle: { backgroundColor: '#ef5350' }
+};
 
 
-
-export default class ProfilBerber extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {userType:'', name: '', phone: '', workPlace:'', workAddress:'', workPhone:'', 
@@ -40,23 +42,20 @@ export default class ProfilBerber extends Component {
     const { userType, name, phone} = this.state;
     userId=firebase.auth().currentUser.uid;
     firebase.database().ref('users/' + userId).set({
-      userType: 1,
+      userType: 0,
       name: name,
       phone: phone
     });
   }
 
   onSaveBarber() {
-    const { userType, name, email, phone, workPlace, workAddress, workPhone,
+    const { userType, name, phone, workPlace, workAddress, workPhone,
       latitude, longtitude, createdAt, updateAt, status, ownerId} = this.state;
- 
-    userId=firebase.auth().currentUser.uid;
-    mail=firebase.auth().currentUser.email;
- 
+
+    userId=firebase.auth().currentUser.uid; 
     firebase.database().ref('users/' + userId).set({
       userType: 1,
       name: name,
-      email: mail,
       phone: phone
     });
 
@@ -74,15 +73,13 @@ export default class ProfilBerber extends Component {
   }
   
   render() {
-     const {navigate} = this.props.navigation;
     return (
         <Container>
             <Header>
                 <Left/>
-                  <Body>
-                     <Title>Kullanıcı Bilgileriniz</Title>
-                  </Body>
-                <Right/>
+                <Body>
+                <Title>Kullanıcı Bilgileriniz</Title>
+                </Body>
             </Header>
             <Content>
                 <Form>
@@ -112,11 +109,8 @@ export default class ProfilBerber extends Component {
                     onChangeText={workPhone => this.setState({ workPhone })}/>
                 </Item>
                 </Form>
-                <Button block style={styles.btnWorker} onPress={() => navigate('Employee')}>
+                <Button block style={styles.btnWorker} onPress={this.onSaveBarber.bind(this)}>
                     <Text>Çalışan Ekle</Text>
-                </Button>
-                <Button block style={styles.btnWorkerList} onPress={() => navigate('WorkerList')}>
-                    <Text>Çalışanları Listele</Text>
                 </Button>
                 <Button block style={styles.button} onPress={this.onSaveBarber.bind(this)}>
                     <Text>Güncelle</Text>

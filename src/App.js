@@ -10,7 +10,6 @@ import HairStylePage from "./screens/hairStylePage";
 import Register from "./screens/register";
 import Profile from "./screens/profile";
 import ProfilBerber from "./screens/profilBerber";
-import Employee from "./screens/worker";
 
 const Drawer = DrawerNavigator(
   {
@@ -20,9 +19,7 @@ const Drawer = DrawerNavigator(
     HairStylePage:{screen: HairStylePage},
     Register :{screen: Register},
     Profile:{screen: Profile},
-    ProfilBerber:{screen: ProfilBerber},
-    Employee:{screen: Employee},
-    
+    ProfilBerber:{screen: ProfilBerber}
   },
   {
     initialRouteName: "Home",
