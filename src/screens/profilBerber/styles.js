@@ -19,5 +19,10 @@ export default{
         margin: 15,
         marginTop: 50,
         backgroundColor: "#6FAF98"
+    },
+    btnWorkerList:{
+        margin: 15,
+        marginTop: 15,
+        backgroundColor: "blue"
     }
 };

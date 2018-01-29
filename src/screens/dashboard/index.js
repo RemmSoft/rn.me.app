@@ -39,9 +39,9 @@ class Dashboard extends Component {
       this.setState({
         userType:snap.val().userType          
       })
-      if(this.state.userType==0){
+      if(this.state.userType===0){
         this.props.navigation.navigate('Profile');
-     }else{
+     }else if(this.state.userType===1){
        this.props.navigation.navigate('ProfilBerber');
      }
     });
@@ -56,7 +56,7 @@ class Dashboard extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigate.navigate('Drawer')}
+              onPress={() => this.props.navigation.navigate('Drawer')}
             >
               <Icon name="menu" />
             </Button>
@@ -65,7 +65,7 @@ class Dashboard extends Component {
             <Title>Bana Özel</Title>
           </Body>
           <Right>
-          <Button
+           <Button
               transparent
               onPress={() =>this.getUser(this.getRef())}
             >

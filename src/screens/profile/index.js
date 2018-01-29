@@ -31,17 +31,18 @@ export default class Profile extends Component {
     });
   }
 
-  onSave() {
-    const { name, email, phone } = this.state;
-    userId=firebase.auth().currentUser.uid;
+onSave() {
+   const { userType, name, email, phone } = this.state;
+   userId=firebase.auth().currentUser.uid;
+   mail=firebase.auth().currentUser.email;
 
-    firebase.database().ref('users/' + userId).set({
-      name: name,
-      email: email,
-      phone: phone
-    });
-  }
-
+   firebase.database().ref('users/' + userId).set({
+     userType: 0,
+     name: name,
+     email: mail,
+     phone: phone
+   });
+ }
   render() {
     return (
       <Container>

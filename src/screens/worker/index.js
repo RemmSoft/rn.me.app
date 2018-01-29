@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, 
-         Label,Text,Button, View,Title,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
+import { Container, Header, Content, Form, Item,Body, Input, 
+         Label,Text,Button, View,Title,Left,Right} from 'native-base';
 import firebase from "firebase";
 
 import styles from "./styles";
@@ -9,7 +9,7 @@ const tabProps = {
   tabBarUnderlineStyle: { backgroundColor: '#ef5350' }
 };
 
-export default class Calisan extends Component {
+export default class Employee extends Component {
   constructor(props) {
     super(props);
     this.state = {userType:'', name: '', phone: '', email:'', workPlace:'', workAddress:'', workPhone:'', 
@@ -22,12 +22,17 @@ export default class Calisan extends Component {
 
     userId=firebase.auth().currentUser.uid; 
     mail=firebase.auth().currentUser.email;
-    firebase.database().ref('berbers/' + userId).set({
-      userType: 1,
+    let rootRef = firebase.database().ref();
+    let storesRef = rootRef.child('berbers/');
+    let newStoreRef = storesRef.push();
+    newStoreRef.set({
+      uid: userId,
+      userType: 0,
       name: name,
       phone: phone,
       email: mail
     });
+
 
     this.props.navigation.navigate("ProfilBerber");
   }
