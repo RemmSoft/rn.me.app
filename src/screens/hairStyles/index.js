@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body,Badge,Left,Title,Button,Icon,Right } from 'native-base';
-import {TouchableOpacity,Image} from "react-native";
+import {TouchableOpacity,Image, ListView,View} from "react-native";
+import firebase from "firebase";
 
 
 import styles from "./styles";
@@ -8,6 +9,42 @@ import styles from "./styles";
 const cover=require("../../assets/barber.png");
  
 export default class HairStyles extends Component {
+  constructor(props){
+    super(props);
+    let ds = new ListView.DataSource({rowHasChanged:(r1, r2) => r1 !== r2});
+    this.state = {      
+      itemDataSource: ds,    
+    }
+    this.renderRow = this.renderRow.bind(this);
+  }
+  componentWillMount(){
+    let leadsRef = firebase.database().ref('stores/');
+    leadsRef.on('value', (snapshot)=> {
+    let childData=[];
+    snapshot.forEach((childSnapshot)=> {
+        childData.push({
+         title: childSnapshot.val().workPlace,
+        });
+      });
+      this.setState({
+        itemDataSource: this.state.itemDataSource.cloneWithRows(childData)
+      });
+    });
+  }
+  renderRow(item){
+      return(
+          <ListItem>
+            <Thumbnail size={70} source={cover} />
+              <Body>
+               <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStylePage")}>
+                 <Text style={styles.liText}>{item.title}</Text>
+                 <Text note>Saç, sakal, ağda</Text>
+                </TouchableOpacity>
+              </Body>
+           </ListItem>
+      );
+    }
+  
   render() {
     return (
       <Container>
@@ -19,36 +56,16 @@ export default class HairStyles extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Ata MEN’S</Title>
+            <Title>Berberler</Title>
           </Body>
           <Right />
         </Header>
         <Content>
           <List style={styles.imageContainer}>
-            <ListItem>
-              <Thumbnail size={70} source={cover} />
-              <Body>
-               <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStylePage")}>
-               <Text>Ekol Güzellik Salonu</Text>
-               <Text note>Saç, sakal, ağda</Text>
-               </TouchableOpacity>
-              </Body>
-              <Badge info>
-                  <Text>2</Text>
-              </Badge>
-            </ListItem>
-            <ListItem>
-              <Thumbnail size={70} source={cover} />
-              <Body>
-                <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStylePage")}>
-                  <Text>Barber Güzellik Salonu</Text>
-                  <Text note>Saç, sakal, ağda</Text>
-                </TouchableOpacity>
-             </Body>
-              <Badge info>
-                  <Text>5</Text>
-              </Badge>
-            </ListItem>
+            <ListView
+              dataSource={this.state.itemDataSource}
+              renderRow={this.renderRow} 
+            />
           </List>
         </Content>
       </Container>
