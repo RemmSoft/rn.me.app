@@ -38,9 +38,22 @@ export default class ProfilBerber extends Component {
       });
   }
 
+  onSaveEmployee() {
+    const { userType, name, email, phone} = this.state;
+    userId=firebase.auth().currentUser.uid;
+    mail=firebase.auth().currentUser.email;
+
+    firebase.database().ref('berbers/' + userId).set({
+      userType: 1,
+      name: name,
+      email: mail,
+      phone: phone
+    });
+  }
+
   onSaveBarber() {
     const { userType, name, email, phone, workPlace, workAddress, workPhone,
-      latitude, longtitude, createdAt, updateAt, status} = this.state;
+      latitude, longtitude, createdAt, updateAt, status, ownerId} = this.state;
 
     userId=firebase.auth().currentUser.uid; 
     mail=firebase.auth().currentUser.email;
@@ -60,13 +73,12 @@ export default class ProfilBerber extends Component {
       longtitude: "",
       createdAt: Date.now(),
       updateAt: Date.now(),
-      status: 1
+      status: 1,
+      ownerId: ""
     });
   }
   
   render() {
-    const {navigate} = this.props.navigation;
-    
     return (
         <Container>
             <Header>
@@ -103,10 +115,7 @@ export default class ProfilBerber extends Component {
                     onChangeText={workPhone => this.setState({ workPhone })}/>
                 </Item>
                 </Form>
-                <Button block style={styles.btnWorker} onPress={() => navigate('EmployeeList')}>
-                    <Text>Çalışanlar</Text>
-                </Button>
-                <Button block style={styles.btnWorker} onPress={() => navigate('Employee')}>
+                <Button block style={styles.btnWorker} onPress={this.onSaveEmployee.bind(this)}>
                     <Text>Çalışan Ekle</Text>
                 </Button>
                 <Button block style={styles.button} onPress={this.onSaveBarber.bind(this)}>
