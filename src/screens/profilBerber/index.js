@@ -53,7 +53,7 @@ export default class ProfilBerber extends Component {
 
   onSaveBarber() {
     const { userType, name, email, phone, workPlace, workAddress, workPhone,
-      latitude, longtitude, createdAt, updateAt, status, ownerId} = this.state;
+      latitude, longtitude, createdAt, updateAt, status} = this.state;
 
     userId=firebase.auth().currentUser.uid; 
     mail=firebase.auth().currentUser.email;
@@ -73,12 +73,13 @@ export default class ProfilBerber extends Component {
       longtitude: "",
       createdAt: Date.now(),
       updateAt: Date.now(),
-      status: 1,
-      ownerId: ""
+      status: 1
     });
   }
   
   render() {
+    const {navigate} = this.props.navigation;
+
     return (
         <Container>
             <Header>
@@ -115,7 +116,10 @@ export default class ProfilBerber extends Component {
                     onChangeText={workPhone => this.setState({ workPhone })}/>
                 </Item>
                 </Form>
-                <Button block style={styles.btnWorker} onPress={this.onSaveEmployee.bind(this)}>
+                <Button block style={styles.btnWorker} onPress={() => navigate('EmployeeList')}>
+                    <Text>Çalışanlar</Text>
+                </Button>
+                <Button block style={styles.btnWorker} onPress={() => navigate('Employee')}>
                     <Text>Çalışan Ekle</Text>
                 </Button>
                 <Button block style={styles.button} onPress={this.onSaveBarber.bind(this)}>
