@@ -32,7 +32,7 @@ export default class Register extends Component {
 
   onSaveBarber() {
     const { userType, name, phone, email, workPlace, workAddress, workPhone,
-      latitude, longtitude, createdAt, updateAt, status, ownerId} = this.state;
+      latitude, longtitude, createdAt, updateAt, status} = this.state;
 
     userId=firebase.auth().currentUser.uid; 
     mail=firebase.auth().currentUser.email;
@@ -51,8 +51,7 @@ export default class Register extends Component {
       longtitude: "",
       createdAt: Date.now(),
       updateAt: Date.now(),
-      status: 1,
-      ownerId: ""
+      status: 1
     });
 
     this.props.navigation.navigate("Dashboard");
