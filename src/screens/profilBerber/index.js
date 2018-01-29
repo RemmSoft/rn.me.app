@@ -39,11 +39,14 @@ export default class ProfilBerber extends Component {
   }
 
   onSaveEmployee() {
-    const { userType, name, phone} = this.state;
+    const { userType, name, email, phone} = this.state;
     userId=firebase.auth().currentUser.uid;
-    firebase.database().ref('users/' + userId).set({
+    mail=firebase.auth().currentUser.email;
+
+    firebase.database().ref('berbers/' + userId).set({
       userType: 1,
       name: name,
+      email: mail,
       phone: phone
     });
   }
