@@ -16,6 +16,7 @@ export default class EmployeeList extends Component {
           itemDataSource: ds
         }
         this.renderRow = this.renderRow.bind(this);
+        this.pressRow = this.pressRow.bind(this);
       }
 
       componentWillMount(){
@@ -28,7 +29,8 @@ export default class EmployeeList extends Component {
             snapshot.forEach((childSnapshot)=> {
                 childData.push({
                 name: childSnapshot.val().name,
-                phone: childSnapshot.val().phone
+                phone: childSnapshot.val().phone,
+                _key: childSnapshot.key
                 });
             });
 
@@ -38,6 +40,13 @@ export default class EmployeeList extends Component {
         });
       }
 
+      pressRow(item){
+       console.log(item._key);
+       let userId=firebase.auth().currentUser.uid;
+       let Ref = firebase.database().ref('berbers/'+ userId + '/'); 
+       Ref.child(item._key).remove();
+      }
+
       renderRow(item){
         return(
             <ListItem>
@@ -45,10 +54,9 @@ export default class EmployeeList extends Component {
                  <TouchableOpacity style={{flexDirection: 'column'}}>
                    <Text >{item.name}</Text>
                    <Text note>{item.phone}</Text>
-                  </TouchableOpacity>
-                  <Button full danger >
-                    <Icon active name="trash" />
-                  </Button>
+                   <Icon style={styles.Icon} active name="trash" 
+                    onPress={() => { this.pressRow(item); }}/>
+                 </TouchableOpacity>
                 </Body>
              </ListItem>
         );
