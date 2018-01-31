@@ -24,6 +24,8 @@ export default class HairStyles extends Component {
     snapshot.forEach((childSnapshot)=> {
         childData.push({
          title: childSnapshot.val().workPlace,
+         id: childSnapshot.key,
+         phone: childSnapshot.val().workPhone
         });
       });
       this.setState({
@@ -36,7 +38,7 @@ export default class HairStyles extends Component {
           <ListItem>
             <Thumbnail size={70} source={cover} />
               <Body>
-               <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.props.navigation.navigate("HairStylePage")}>
+               <TouchableOpacity style={{flexDirection: 'column'}} onPress={() => this.pressRow(item)}>
                  <Text style={styles.liText}>{item.title}</Text>
                  <Text note>Saç, sakal, ağda</Text>
                 </TouchableOpacity>
@@ -44,7 +46,11 @@ export default class HairStyles extends Component {
            </ListItem>
       );
     }
-  
+    pressRow(item){
+      return(
+        this.props.navigation.navigate('HairStylePage',{category: item})
+      )
+     }
   render() {
     return (
       <Container>
