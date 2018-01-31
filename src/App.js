@@ -12,6 +12,8 @@ import Profile from "./screens/profile";
 import ProfilBerber from "./screens/profilBerber";
 import Employee from "./screens/employee";
 import EmployeeList from "./screens/employeeList";
+import Appointment from "./screens/appointment";
+import DateTime from "./screens/appointment";
 
 const Drawer = DrawerNavigator(
   {
@@ -23,7 +25,9 @@ const Drawer = DrawerNavigator(
     Profile:{screen: Profile},
     ProfilBerber:{screen: ProfilBerber},
     Employee:{screen: Employee},
-    EmployeeList:{screen: EmployeeList}
+    EmployeeList:{screen: EmployeeList},
+    Appointment:{screen: Appointment},
+    DateTime:{screen: DateTime}
   },
   {
     initialRouteName: "Home",

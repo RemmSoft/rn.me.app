@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right,Title } from 'native-base';
-
+import firebase from "firebase";
 const kapak=require("../../assets/cover.png");
 
 export default class HairStylePage extends Component {
+
+  componentWillMount()
+  {
+    let leadsRef = firebase.database().ref('berbers/');
+    console.log(userId);
+  }
   render() {
+    const {navigate} = this.props.navigation;
     return (
       <Container>
           <Header>
@@ -42,7 +49,7 @@ export default class HairStylePage extends Component {
                 </Button>
               </Left>
               <Right>
-               <Button small rounded success>
+               <Button small rounded success onPress={() => navigate('Appointment')}>
                  <Text>Randevu Al</Text>
                 </Button>
               </Right>
