@@ -300,7 +300,7 @@ export default (variables = variable) => {
       flexDirection: "row",
       justifyContent: "flex-end"
     },
-    backgroundColor: "#ef5350",
+    backgroundColor: "#6FAF98",
     flexDirection: "row",
     paddingHorizontal: 10,
     justifyContent: "center",

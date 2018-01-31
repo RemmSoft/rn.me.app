@@ -20,7 +20,7 @@ export default class EmployeeList extends Component {
       }
 
       componentWillMount(){
-        const { itemDataSource } = this.state;
+
         let userId=firebase.auth().currentUser.uid;
         let leadsRef = firebase.database().ref('berbers/'+userId+'/');
 
@@ -41,7 +41,7 @@ export default class EmployeeList extends Component {
       }
 
       pressRow(item){
-       console.log(item._key);
+        
        let userId=firebase.auth().currentUser.uid;
        let Ref = firebase.database().ref('berbers/'+ userId + '/'); 
        Ref.child(item._key).remove();
@@ -49,20 +49,24 @@ export default class EmployeeList extends Component {
 
       renderRow(item){
         return(
-            <ListItem>
+            <ListItem >
                 <Body>
                  <TouchableOpacity style={{flexDirection: 'column'}}>
                    <Text >{item.name}</Text>
-                   <Text note>{item.phone}</Text>
-                   <Icon style={styles.Icon} active name="trash" 
-                    onPress={() => { this.pressRow(item); }}/>
+                   <Text note>{item.phone}</Text>                
                  </TouchableOpacity>
                 </Body>
+                <Right>
+                    <Icon style={styles.Icon} active name="trash" 
+                    onPress={() => { this.pressRow(item); }}/>
+                </Right>
              </ListItem>
         );
       }
 
       render() {
+        const {navigate} = this.props.navigation;
+
         return (
           <Container>
             <Header>
@@ -84,7 +88,11 @@ export default class EmployeeList extends Component {
                   renderRow={this.renderRow} 
                 />
               </List>
+              
             </Content>
+              <Button block style={styles.button} onPress={() => navigate('Employee')}>
+                  <Text>Çalışan Ekle</Text>
+              </Button>
           </Container>
         );
       }

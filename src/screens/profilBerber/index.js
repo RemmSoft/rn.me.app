@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, 
-  Label,Text,Button, View,Title,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
+  Label,Text,Button, View,Title,Icon,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
 import firebase from "firebase";
 
 import styles from "./styles";
@@ -83,7 +83,12 @@ export default class ProfilBerber extends Component {
     return (
         <Container>
             <Header>
-                <Left/>
+              <Left>
+                <Button  transparent
+                  onPress={() => this.props.navigation.navigate("Dashboard")}>
+                  <Icon name="ios-swap" />
+                </Button>
+              </Left>
                 <Body>
                 <Title>Kullanıcı Bilgileriniz</Title>
                 </Body>
@@ -116,17 +121,15 @@ export default class ProfilBerber extends Component {
                     onChangeText={workPhone => this.setState({ workPhone })}/>
                 </Item>
                 </Form>
-                <Button block style={styles.btnWorker} onPress={() => navigate('EmployeeList')}>
+                
+            <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+            </Content>
+                <Button block style={styles.button} onPress={() => navigate('EmployeeList')}>
                     <Text>Çalışanlar</Text>
-                </Button>
-                <Button block style={styles.btnWorker} onPress={() => navigate('Employee')}>
-                    <Text>Çalışan Ekle</Text>
                 </Button>
                 <Button block style={styles.button} onPress={this.onSaveBarber.bind(this)}>
                     <Text>Güncelle</Text>
                 </Button>
-            <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-        </Content>
     </Container>
     );
   }

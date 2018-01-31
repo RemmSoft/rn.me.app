@@ -6,7 +6,7 @@ import firebase from "firebase";
 import styles from "./styles";
 
 const tabProps = {
-  tabBarUnderlineStyle: { backgroundColor: '#ef5350' }
+  tabBarUnderlineStyle: { backgroundColor: '#6FAF98' }
 };
 
 export default class Register extends Component {

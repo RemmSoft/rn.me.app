@@ -8,6 +8,15 @@ export default {
       width: deviceWidth,
       backgroundColor:'white'
     },
+    Icon:{
+      marginRight: 15,
+      color:'red'
+    },
+    button:{
+      margin: 15,
+      marginTop: 20,
+      backgroundColor: "#6FAF98"
+    },
     li: {
       backgroundColor: '#fff',
       borderBottomColor: '#eee',
