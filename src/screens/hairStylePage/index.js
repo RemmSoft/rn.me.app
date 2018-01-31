@@ -5,12 +5,10 @@ import firebase from "firebase";
 const kapak=require("../../assets/cover.png");
 
 export default class HairStylePage extends Component {
-
-  componentWillMount()
-  {
-    let leadsRef = firebase.database().ref('berbers/');
-    console.log(userId);
+  constructor(props){
+    super(props);
   }
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -23,7 +21,7 @@ export default class HairStylePage extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Ata MEN’S</Title>
+            <Title>{this.props.navigation.state.params.category.title}</Title>
           </Body>
           <Right />
         </Header>
@@ -33,7 +31,7 @@ export default class HairStylePage extends Component {
               <Left>
                 <Thumbnail source={kapak} />
                 <Body>
-                  <Text>Ata Men's Club</Text>
+                  <Text></Text>
                   <Text note>Saç Bakım</Text>
                 </Body>
               </Left>
@@ -56,18 +54,7 @@ export default class HairStylePage extends Component {
             </CardItem>
             <CardItem>
               <Body>
-                <Text>
-                Biz Kimiz?
-Profesyonel ekibi ile Acıbadem de hizmet veren Ata men’s Club, saçı sanata dönüştüren modelleriyle, kendine güvenen ve bakımlı olmayı seven herkesin vazgeçilmez adresidir.
-
-Yüz ve vücut yapınızın, yaşam tarzınız ve kişiliğiniz ile bütünlüğünden ortaya çıkan size özel saç modeliniz; günlük ama iddialı, naturel ama bakımlı ve her an her kıyafetinize uyum sağlayan bir tarzda keyfinize keyif katacaktır.
-
-Yapılan araştırmalara göre Saç modeli kişilerin yaşam tarzını yansıtıyor.Yaşam tarzına uygun saç modeli de kişilerin kendilerini daha mutlu hissetmelerini sağlıyor
-
-Bizim işimiz sizin yaşam tarzınıza en uygun saç modelini sizin için belirlemek ve bir hayat boyu sizin mutlu olmanızı sağlamak. Yüz hatlarınıza uygun saç modelini belirledikten sonra geriye sadece tek bir şey kalıyor
-
-Oda saçlarınızı Türkiye’nin en iyi saç tasarımcısı ATA MEN’S CLUB’e emanet etmek
-                </Text>
+                <Text>{this.props.navigation.state.params.category.phone}</Text>
               </Body>
             </CardItem>
           </Card>
