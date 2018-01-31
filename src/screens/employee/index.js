@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, Label,Text,Button, View,Title,Left,Right } from 'native-base';
+import { Container, Header, Content, Form, Item, Icon, ListItem,Body, CheckBox, Input, Label,Text,Button, View,Title,Left,Right } from 'native-base';
 import firebase from "firebase";
 
 import styles from "./styles";
@@ -8,9 +8,9 @@ export default class Employee extends Component {
   constructor(props) {
     super(props);
     this.state = {name: '', phone: ''}
-    
+    this.onSaveEmployee= this.onSaveEmployee.bind(this)
   }
-
+   
   onSaveEmployee() {
     const { name, phone} = this.state;
 
@@ -20,8 +20,8 @@ export default class Employee extends Component {
         name: name,
         phone: phone
     });
-        
-    this.props.navigation.navigate('ProfilBerber');
+
+    this.props.navigation.navigate('EmployeeList');
   }
 
   render() {
@@ -29,7 +29,12 @@ export default class Employee extends Component {
     return (
       <Container>
         <Header>
-          <Left/>
+          <Left>
+            <Button  transparent
+              onPress={() => this.props.navigation.navigate("ProfilBerber")}>
+              <Icon name="ios-swap" />
+            </Button>
+          </Left>
           <Body>
             <Title>Çalışan Bilgileri</Title>
           </Body>
@@ -48,11 +53,11 @@ export default class Employee extends Component {
                     onChangeText={(phone) => this.setState({ phone })} 
                     />
             </Item>
-            <Button block style={styles.button} onPress={this.onSaveEmployee.bind(this)}>
-                 <Text>Kaydet</Text>
-            </Button>  
           </Form>
         </Content>
+            <Button block style={styles.button} onPress={() => { this.onSaveEmployee(); }}>
+                 <Text>Kaydet</Text>
+            </Button>  
       </Container>
     );
   }

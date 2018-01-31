@@ -13,8 +13,8 @@ export default (variables = variable) => {
       paddingHorizontal: 20,
       flex: platform === "android" ? 0 : 1,
       minWidth: platform === "android" ? undefined : 60,
-      backgroundColor: "red",
-      topTabBarActiveTextColor: "red"
+      backgroundColor: "#6faf98",
+      topTabBarActiveTextColor: "#6faf98"
     },
     "NativeBase.Text": {
       color: variables.topTabBarTextColor,
