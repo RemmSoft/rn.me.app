@@ -32,7 +32,7 @@ const Drawer = DrawerNavigator(
   {
     initialRouteName: "Home",
     contentOptions: {
-      activeTintColor: "#e91e63"
+      activeTintColor: "#ffffff"
     },
     contentComponent: props => <SideBar {...props} />
   }

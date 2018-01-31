@@ -8,17 +8,13 @@ export default {
       width: deviceWidth,
       backgroundColor:'white'
     },
-    li: {
-      backgroundColor: '#fff',
-      borderBottomColor: '#eee',
-      borderColor: 'transparent',
-      borderWidth: 1,
-      paddingLeft: 16,
-      paddingTop: 14,
-      paddingBottom: 16
+    Icon:{
+      marginRight: 15,
+      color:'red'
     },
-    liText:{
-      color: '#333',
-      fontSize: 16
+    button:{
+      margin: 15,
+      marginTop: 20,
+      backgroundColor: "#6FAF98"
     }
 };
