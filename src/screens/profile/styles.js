@@ -10,6 +10,6 @@ export default{
     button:{
         margin: 15,
         marginTop: 50,
-        backgroundColor: "#ef5350"
+        backgroundColor: "#6faf98"
     }
 };

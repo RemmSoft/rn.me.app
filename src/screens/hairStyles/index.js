@@ -25,7 +25,9 @@ export default class HairStyles extends Component {
         childData.push({
          title: childSnapshot.val().workPlace,
          id: childSnapshot.key,
-         phone: childSnapshot.val().workPhone
+         phone: childSnapshot.val().workPhone,
+         owner: childSnapshot.val().owner,
+         ownerPhone:childSnapshot.val().ownerPhone
         });
       });
       this.setState({

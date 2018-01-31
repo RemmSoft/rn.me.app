@@ -51,7 +51,9 @@ export default class Register extends Component {
       longtitude: "",
       createdAt: Date.now(),
       updateAt: Date.now(),
-      status: 1
+      status: 1,
+      owner:this.state.name,
+      ownerPhone:this.state.phone
     });
 
     this.props.navigation.navigate("Dashboard");

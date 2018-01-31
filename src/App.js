@@ -13,7 +13,7 @@ import ProfilBerber from "./screens/profilBerber";
 import Employee from "./screens/employee";
 import EmployeeList from "./screens/employeeList";
 import Appointment from "./screens/appointment";
-import DateTime from "./screens/appointment";
+import DateTime from "./screens/appointment/dateTime";
 
 const Drawer = DrawerNavigator(
   {

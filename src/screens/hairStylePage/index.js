@@ -47,7 +47,7 @@ export default class HairStylePage extends Component {
                 </Button>
               </Left>
               <Right>
-               <Button small rounded success onPress={() => navigate('Appointment')}>
+               <Button small rounded success onPress={() => navigate('Appointment',{data: this.props.navigation.state.params.category})}>
                  <Text>Randevu Al</Text>
                 </Button>
               </Right>

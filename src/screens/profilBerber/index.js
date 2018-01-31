@@ -33,7 +33,8 @@ export default class ProfilBerber extends Component {
         this.setState({
           workPlace: snap.val().workPlace,
           workAddress: snap.val().workAddress,
-          workPhone: snap.val().workPhone            
+          workPhone: snap.val().workPhone,
+          createdAt: snap.val().createdAt            
         })
       });
   }
@@ -71,9 +72,11 @@ export default class ProfilBerber extends Component {
       workPhone: workPhone,
       latitude: "",
       longtitude: "",
-      createdAt: Date.now(),
+      createdAt:this.state.createdAt,
       updateAt: Date.now(),
-      status: 1
+      status: 1,
+      owner: this.state.name,
+      ownerPhone: this.state.phone
     });
   }
   
