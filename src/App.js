@@ -30,7 +30,7 @@ const Drawer = DrawerNavigator(
     DateTime:{screen: DateTime}
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "DateTime",
     contentOptions: {
       activeTintColor: "#ffffff"
     },
