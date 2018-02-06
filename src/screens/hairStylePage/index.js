@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right,Title } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, 
+  Button, Icon, Left, Body, Right, Title } from 'native-base';
 import firebase from "firebase";
+
 const kapak=require("../../assets/cover.png");
 
 export default class HairStylePage extends Component {

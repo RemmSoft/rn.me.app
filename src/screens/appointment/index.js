@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body,Badge,Left,Title,Button,Icon,Right } from 'native-base';
-import {TouchableOpacity,Image, ListView,View} from "react-native";
+import { Container, Header, Content, List, ListItem, Thumbnail, Text, 
+  Body, Left, Title, Button, Icon, Right } from 'native-base';
+import {TouchableOpacity, Image, ListView, View} from "react-native";
 import firebase from "firebase";
 import DatePicker from 'react-native-datepicker';
 import styles from "./styles";

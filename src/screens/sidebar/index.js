@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { Image } from "react-native";
 import {
-  Content,
-  Text,
-  List,
-  ListItem,
-  Icon,
-  Container,
-  Left,
-  Right,
-  Badge
+  Content, Text, List, ListItem, Icon, Container, Left, Right, Badge
 } from "native-base";
 import styles from "./style";
 

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Text, Body,Badge,Left,Title,Icon,Right,Button } from 'native-base';
-import {TouchableOpacity,Image, ListView,View} from "react-native";
+import { Container, Header, Content, Text, Body, Left, Title, Icon, Right, Button } from 'native-base';
+import {ListView, View} from "react-native";
 import DatePicker from 'react-native-datepicker';
 import firebase from 'firebase';
-
-
 import styles from "./styles";
+
 const rows = [
   { id: 1, text: "10:00",disabled:false },
   { id: 2, text: "10:30",disabled:false },
@@ -32,6 +31,7 @@ const rows = [
   { id: 23, text: "21:00",disabled:false },
   { id: 24, text: "21:30",disabled:false },
 ];
+
 export default class DateTime extends Component {
   constructor(props){
     super(props);
@@ -46,6 +46,7 @@ export default class DateTime extends Component {
       disabledValue:false
     }
   }
+
   componentWillMount(){
     const {data,ownerId} = this.props.navigation.state.params;
     console.log(data.key);
@@ -69,7 +70,6 @@ export default class DateTime extends Component {
     });
   }
 
-
   Time() {
     return rows.map((news, i)=>{
       return(
@@ -81,6 +81,7 @@ export default class DateTime extends Component {
       );
     });
   }
+
   saveAppoinment(data,ownerId){
       const{selectTime,datetime}=this.state;
       let userId=firebase.auth().currentUser.uid;
@@ -95,6 +96,7 @@ export default class DateTime extends Component {
       }).then(response=>this.saveReservationBerber(response.key,data,ownerId));
       //this.saveReservationBerber(data);
   }
+
   saveReservationBerber(key,data,ownerId){
     const{selectTime,datetime}=this.state;
     if (ownerId!==data.key) {
@@ -109,7 +111,8 @@ export default class DateTime extends Component {
       });
     }
   }
-  dene(){
+  
+  disabled(){
     for (let row of rows) {
       row.disabled=false;
     }
@@ -124,7 +127,7 @@ export default class DateTime extends Component {
         <Header>
           <Left>
             <Button  transparent
-              onPress={() => this.dene()}>
+              onPress={() => this.disabled()}>
               <Icon name="ios-swap" />
             </Button>
           </Left>

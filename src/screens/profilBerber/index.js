@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, 
-  Label,Text,Button, View,Title,Icon,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
+import { Container, Header, Content, Form, Item, Body, Input, 
+  Label, Text, Button, Title, Icon, Left } from 'native-base';
 import firebase from "firebase";
-
 import styles from "./styles";
 
 const tabProps = {
   tabBarUnderlineStyle: { backgroundColor: '#ef5350' }
 };
-
 
 export default class ProfilBerber extends Component {
   constructor(props) {
