@@ -13,7 +13,6 @@ class Dashboard extends Component {
   constructor(props){
     super(props);
     this.state={userType:0};
-    
   }
 
   getRef(){
@@ -34,7 +33,6 @@ class Dashboard extends Component {
         this.props.navigation.navigate('ProfilBerber');
       }
     });
- 
   }
 
   render() {
@@ -45,7 +43,7 @@ class Dashboard extends Component {
           <Left>
             <Button
               transparent
-              onPress={() => this.props.navigate.navigate('Drawer')}
+              onPress={() => this.props.navigation.navigate('DrawerOpen')}
             >
               <Icon name="menu" />
             </Button>
@@ -54,15 +52,8 @@ class Dashboard extends Component {
             <Title>Bana Özel</Title>
           </Body>
           <Right>
-          <Button
-              transparent
-              onPress={() =>this.getUser(this.getRef())}
-            >
-              <Icon name="home" />
-            </Button>
           </Right>
         </Header>
-
         <Content padder>
           <View style={styles.content}>
             <View style={styles.icon}>

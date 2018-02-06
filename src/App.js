@@ -17,11 +17,9 @@ import DateTime from "./screens/appointment/dateTime";
 
 const Drawer = DrawerNavigator(
   {
-    Home: {screen: Home},
     Dashboard:{screen: Dashboard},
     HairStyles:{screen: HairStyles},
     HairStylePage:{screen: HairStylePage},
-    Register :{screen: Register},
     Profile:{screen: Profile},
     ProfilBerber:{screen: ProfilBerber},
     Employee:{screen: Employee},
@@ -30,7 +28,8 @@ const Drawer = DrawerNavigator(
     DateTime:{screen: DateTime}
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Dashboard",
+    drawerWidth: 200,
     contentOptions: {
       activeTintColor: "#ffffff"
     },
@@ -40,11 +39,16 @@ const Drawer = DrawerNavigator(
 
 const AppNavigator = StackNavigator(
   {
+    Home: {screen: Home},
+    Register :{screen: Register},
     Drawer: {screen: Drawer}
   },
   {
-    initialRouteName: "Drawer",
-    headerMode: "none"
+    initialRouteName: "Home",
+    headerMode: "none",
+    navigationOptions:{
+      gesturesEnabled: false
+    },
   }
 );
 
