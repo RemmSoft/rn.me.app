@@ -300,7 +300,7 @@ export default (variables = variable) => {
       flexDirection: "row",
       justifyContent: "flex-end"
     },
-    backgroundColor: "#6FAF98",
+    backgroundColor: "#838B8B",
     flexDirection: "row",
     paddingHorizontal: 10,
     justifyContent: "center",
@@ -309,6 +309,7 @@ export default (variables = variable) => {
       platform === "ios" ? 1 / PixelRatio.getPixelSizeForLayoutSize(1) : 0,
     borderBottomColor: variables.toolbarDefaultBorder,
     height: variables.toolbarHeight,
+    marginTop: platform ==="ios" ? StatusBar.currentHeight:StatusBar.currentHeight,//statusbarın paddingTop ayarlandı 
     elevation: 3,
     shadowColor: platformStyle === "material" ? "#000" : undefined,
     shadowOffset:
