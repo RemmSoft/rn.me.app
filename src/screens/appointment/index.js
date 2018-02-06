@@ -19,7 +19,7 @@ export default class Appointment extends Component {
 
   componentWillMount(){
     const {data} = this.props.navigation.state.params;
-    let leadsRef = firebase.database().ref('berbers/'+(data.id)+'/');
+    let leadsRef = firebase.database().ref('berbers/'+(data.key)+'/');
       leadsRef.on('value', (snapshot)=> {
         let childData=[];
             snapshot.forEach((childSnapshot)=> {
@@ -28,7 +28,7 @@ export default class Appointment extends Component {
                 phone: childSnapshot.val().phone,
                 key: childSnapshot.key,
                 owner: data.owner,
-                ownerPhone: data.ownerPhone
+                ownerPhone: data.ownerPhone,
                 });
             });
           this.setState({
@@ -38,12 +38,13 @@ export default class Appointment extends Component {
   }
 
   renderRow(item){
+     const {data} = this.props.navigation.state.params;
       return(
           <ListItem>
            <Thumbnail size={70} source={cover} />
              <Body>
               <TouchableOpacity style={{flexDirection: 'column'}} 
-                 onPress={() => this.props.navigation.navigate("DateTime",{data: item})}>
+                 onPress={() => this.props.navigation.navigate("DateTime",{data: item,ownerId: data.key})}>
                 <Text style={styles.liText}>{item.name}</Text>
                 <Text style={styles.liText}>{item.phone}</Text>
                </TouchableOpacity>
@@ -74,7 +75,7 @@ export default class Appointment extends Component {
             <Thumbnail size={70} source={cover} />
               <Body>
                <TouchableOpacity style={{flexDirection: 'column'}} 
-                  onPress={() => this.props.navigation.navigate("DateTime",{data: data})}>
+                  onPress={() => this.props.navigation.navigate("DateTime",{data: data,ownerId:data.key})}>
                  <Text style={styles.liText}>{data.owner}</Text>
                  <Text style={styles.liText}>{data.ownerPhone}</Text>
                 </TouchableOpacity>

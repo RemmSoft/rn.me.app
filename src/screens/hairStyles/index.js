@@ -24,7 +24,7 @@ export default class HairStyles extends Component {
     snapshot.forEach((childSnapshot)=> {
         childData.push({
          title: childSnapshot.val().workPlace,
-         id: childSnapshot.key,
+         key: childSnapshot.key,
          phone: childSnapshot.val().workPhone,
          owner: childSnapshot.val().owner,
          ownerPhone:childSnapshot.val().ownerPhone
