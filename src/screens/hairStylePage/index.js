@@ -19,7 +19,7 @@ export default class HairStylePage extends Component {
           <Left>
             <Button  transparent
               onPress={() => this.props.navigation.navigate("HairStyles")}>
-              <Icon name="ios-swap" />
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>

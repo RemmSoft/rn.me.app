@@ -71,7 +71,7 @@ export default class EmployeeList extends Component {
           <Left>
             <Button  transparent
               onPress={() => this.props.navigation.navigate("ProfilBerber")}>
-              <Icon name="ios-swap" />
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>

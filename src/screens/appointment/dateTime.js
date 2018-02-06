@@ -116,7 +116,7 @@ export default class DateTime extends Component {
     for (let row of rows) {
       row.disabled=false;
     }
-    this.props.navigation.navigate('Dashboard');
+    this.props.navigation.navigate('Appointment');
   }
 
   render() {
@@ -128,7 +128,7 @@ export default class DateTime extends Component {
           <Left>
             <Button  transparent
               onPress={() => this.disabled()}>
-              <Icon name="ios-swap" />
+              <Icon name="arrow-back" />
             </Button>
           </Left>
           <Body>

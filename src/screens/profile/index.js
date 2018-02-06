@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Body, 
-  Input, Label, Text, Button, Title, Left } from 'native-base';
+  Input, Label, Text, Button, Title, Left, Right, Icon } from 'native-base';
 import firebase from "firebase";
 import styles from "./styles";
 
@@ -40,10 +40,16 @@ export default class Profile extends Component {
     return (
       <Container>
         <Header>
-          <Left/>
+          <Left>
+            <Button  transparent
+              onPress={() => this.props.navigation.navigate("Dashboard")}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
           <Body>
             <Title>Kullanıcı Bilgileri</Title>
           </Body>
+          <Right/>
         </Header>
         <Content>
           <Form>
