@@ -36,8 +36,6 @@ class SideBar extends Component {
     this.state = {
       shadowOffsetWidth: 1,
       shadowRadius: 4,
-      userType: 0,
-      route:"Profile"
     };
   }
 
@@ -46,11 +44,7 @@ class SideBar extends Component {
     let userRef=firebase.database().ref("/users/"+userId);
     userRef.once('value').then((snap) => {
 
-      this.setState({
-        userType:snap.val().userType          
-      })
-
-      if(this.state.userType==0)
+      if(snap.val().userType == 0)
       {
        for (let data of datas) 
        {
@@ -58,7 +52,7 @@ class SideBar extends Component {
           data.route="Profile";
        }
       }
-      else if(this.state.userType==1)
+      else if(snap.val().userType == 1)
       {
         for (let data of datas) 
        {
@@ -66,6 +60,29 @@ class SideBar extends Component {
           data.route="ProfilBerber";      
        }
       }
+    });
+  }
+
+  router(data){
+    if(data.name==="Profil")
+    {
+      this.props.navigation.navigate(data.route);
+    }
+    else if(data.name==="Anasayfa")
+    {
+      this.props.navigation.navigate("Dashboard");
+    }
+    else if(data.name==="Çıkış")
+    {
+        this.logout();
+    } 
+  }
+
+  logout(){
+    firebase.auth().signOut().then(() => {
+      this.props.navigation.navigate("Home")
+    },(error) =>{
+      console.error('Sign Out Error', error);
     });
   }
 
@@ -85,7 +102,7 @@ class SideBar extends Component {
               <ListItem
                 button
                 noBorder
-                onPress={() => this.props.navigation.navigate(data.route)}
+                onPress={() => this.router(data)}
               >
                 <Left>
                   <Icon
