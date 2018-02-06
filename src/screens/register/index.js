@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, ListItem,Body, CheckBox, Input, 
-         Label,Text,Button, View,Title,Left,Right,Tab,Tabs,TabHeading } from 'native-base';
+import { Container, Header, Content, Form, Item, Body, Input, Label, 
+  Text, Button, Title, Left, Tab, Tabs, TabHeading } from 'native-base';
 import firebase from "firebase";
-
 import styles from "./styles";
 
 const tabProps = {

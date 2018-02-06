@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, Icon, ListItem,Body, CheckBox, Input, Label,Text,Button, View,Title,Left,Right } from 'native-base';
+import { Container, Header, Content, Form, Item, Icon, Body, 
+  Input, Label, Text, Button, Title, Left } from 'native-base';
 import firebase from "firebase";
-
 import styles from "./styles";
 
 export default class Employee extends Component {

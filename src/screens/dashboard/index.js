@@ -1,21 +1,8 @@
 import React, { Component } from "react";
-import {TouchableOpacity,Image,StatusBar} from "react-native";
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Button,
-  Icon,
-  Thumbnail,
-  Text,
-  Body,
-  Left,
-  Right,
-  View
-} from "native-base";
+import {TouchableOpacity, Image, StatusBar} from "react-native";
+import { Container, Header, Title, Content, Button, Icon, 
+  Text, Body, Left, Right, View } from "native-base";
 import firebase from "firebase";
-
 import styles from "./styles";
 
 const logo = require("../../assets/splashscreen.png");

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body,Badge,Left,Title,Button,Icon,Right } from 'native-base';
-import {TouchableOpacity,Image, ListView,View} from "react-native";
+import { Container, Header, Content, List, ListItem, Thumbnail, 
+  Text, Body, Left, Title, Button, Icon, Right } from 'native-base';
+import {TouchableOpacity, Image, ListView, View} from "react-native";
 import firebase from "firebase";
-
-
 import styles from "./styles";
 
 const cover=require("../../assets/barber.png");
@@ -17,6 +16,7 @@ export default class HairStyles extends Component {
     }
     this.renderRow = this.renderRow.bind(this);
   }
+
   componentWillMount(){
     let leadsRef = firebase.database().ref('stores/');
     leadsRef.on('value', (snapshot)=> {
@@ -35,6 +35,7 @@ export default class HairStyles extends Component {
       });
     });
   }
+
   renderRow(item){
       return(
           <ListItem>
@@ -47,12 +48,14 @@ export default class HairStyles extends Component {
               </Body>
            </ListItem>
       );
-    }
-    pressRow(item){
+  }
+
+  pressRow(item){
       return(
         this.props.navigation.navigate('HairStylePage',{category: item})
       )
-     }
+  }
+
   render() {
     return (
       <Container>
