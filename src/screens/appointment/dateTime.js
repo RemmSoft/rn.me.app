@@ -16,21 +16,23 @@ const rows = [
   { id: 8, text: "13:30",disabled:false },
   { id: 9, text: "14:00",disabled:false },
   { id: 10, text: "14:30",disabled:false},
-  { id: 11, text: "15:00",disabled:false },
-  { id: 12, text: "15:30",disabled:false },
-  { id: 13, text: "16:00",disabled:false },
-  { id: 14, text: "16:30",disabled:false },
-  { id: 15, text: "17:00",disabled:false },
-  { id: 16, text: "17:30",disabled:false },
-  { id: 17, text: "18:00",disabled:false },
-  { id: 18, text: "18:30",disabled:false },
-  { id: 19, text: "19:00",disabled:false },
-  { id: 20, text: "19:30",disabled:false },
-  { id: 21, text: "20:00",disabled:false },
-  { id: 22, text: "20:30",disabled:false },
-  { id: 23, text: "21:00",disabled:false },
-  { id: 24, text: "21:30",disabled:false },
+  { id: 11, text: "15:00",disabled:false},
+  { id: 12, text: "15:30",disabled:false},
+  { id: 13, text: "16:00",disabled:false},
+  { id: 14, text: "16:30",disabled:false},
+  { id: 15, text: "17:00",disabled:false},
+  { id: 16, text: "17:30",disabled:false},
+  { id: 17, text: "18:00",disabled:false},
+  { id: 18, text: "18:30",disabled:false},
+  { id: 19, text: "19:00",disabled:false},
+  { id: 20, text: "19:30",disabled:false},
+  { id: 21, text: "20:00",disabled:false},
+  { id: 22, text: "20:30",disabled:false},
+  { id: 23, text: "21:00",disabled:false},
+  { id: 24, text: "21:30",disabled:false},
 ];
+
+let dateFormat = require('dateformat');
 
 export default class DateTime extends Component {
   constructor(props){
@@ -38,45 +40,26 @@ export default class DateTime extends Component {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
+    let tarih=new Date();
     this.state = {
       date: '',
       time: '20:00',
-      datetime: new Date(),
+      datetime: dateFormat(new Date(),"dd/mm/yyyy") ,
       selectTime:null,
-      disabledValue:false
+      disabledValue:true
     }
+    this.changeDate();
   }
-
-  componentWillMount(){
-    const {data,ownerId} = this.props.navigation.state.params;
-    console.log(data.key);
-    let leadsRef = firebase.database().ref('berbers/'+ownerId+'/'+data.key+'/reservationId/');
-    leadsRef.on('value', (snapshot)=> {
-    let childData=[];
-        snapshot.forEach((childSnapshot)=> {
-            childData.push({
-            selectTime: childSnapshot.val().time,
-            datetime: childSnapshot.val().date,
-            _key: childSnapshot.key,
-            });
-            for(let row of rows){
-              console.log(childSnapshot.val());
-              console.log(row.text);
-              if(childSnapshot.val().time===row.text){
-                row.disabled=true;
-              }
-          }
-        });
-    });
-  }
-
+  
   Time() {
     return rows.map((news, i)=>{
       return(
-        <View key={i} style={{margin:25,}}>
-            <Button rounded success  style={{paddingLeft:30,paddingRight:30,width:140 }} disabled={news.disabled}  onPress={(selectTime)=>this.setState({selectTime: news.text})}>
-              <Text >{news.text}</Text>
-            </Button>
+        <View key={i} style={styles.subStyle}>
+         <Button rounded success  style={{paddingLeft:30,paddingRight:30,width:140 }} disabled={news.disabled}  onPress={(selectTime)=>this.setState({selectTime: news.text})}>
+           <View style={{alignItems:'center',justifyContent:'center'}}>
+            <Text style={{fontSize:15}}>{news.text}</Text>
+           </View> 
+         </Button>
        </View>
       );
     });
@@ -85,7 +68,6 @@ export default class DateTime extends Component {
   saveAppoinment(data,ownerId){
       const{selectTime,datetime}=this.state;
       let userId=firebase.auth().currentUser.uid;
-      console.log(data);
 
       firebase.database().ref('reservations/').push({
           selectTime: selectTime,
@@ -110,6 +92,36 @@ export default class DateTime extends Component {
         date:datetime
       });
     }
+  }
+
+  changeDate(){   
+    for(let row of rows){
+      row.disabled=false;
+    }    
+    const {data,ownerId} = this.props.navigation.state.params;  
+    let leadsRef = '';
+    
+    if (data.key!== ownerId) {
+
+      leadsRef = firebase.database().ref('berbers/'+ownerId+'/'+data.key+'/reservationId/');
+
+    }else {
+      
+      leadsRef = firebase.database().ref('berbers/'+ownerId+'/reservationId/');
+
+    }
+
+    leadsRef.on('value', (snapshot)=> {
+        snapshot.forEach((childSnapshot)=> {
+          if (childSnapshot.val().date === this.state.datetime) {
+            for(let row of rows){
+              if(childSnapshot.val().time === row.text){
+                row.disabled=true;
+              }
+            }
+          }
+        });
+    });
   }
   
   disabled(){
@@ -137,23 +149,26 @@ export default class DateTime extends Component {
           <Right />
         </Header>
         <Content>
-          <View style={styles.icon}>
-           <DatePicker
-            style={{width: 300}}
-            date={this.state.datetime}
-            mode="date"
-            placeholder="placeholder"
-            format="DD/MM/YYYY"
-            minDate="2018-05-01"
-            maxDate="2020-06-01"
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            onDateChange={(date) => {this.setState({datetime: date});}}
-          />
-        </View>
-        <View style={{flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
-            {this.Time()}
-        </View>
+         <View style={styles.container}>
+          <View style={styles.subStyle}>
+            <DatePicker
+              style={{width: 300}}
+              date={this.state.datetime}
+              mode="date"
+              placeholder="placeholder"
+              format="DD/MM/YYYY"
+              minDate="2018-05-01"
+              maxDate="2020-06-01"
+              confirmBtnText="Confirm"
+              btnConfirm={this.changeDate()}
+              cancelBtnText="Cancel"
+              onDateChange={(date) => this.setState({datetime:date})}
+            />
+          </View>
+          <View style={styles.subStyle}>
+              {this.Time()}
+          </View>
+         </View>
         </Content>
         <Button block style={styles.btnWorker} onPress={()=>this.saveAppoinment(data,ownerId)}>
             <Text>Randevu Ekle</Text>
