@@ -22,22 +22,39 @@ export default {
     },
     container: {
       backgroundColor: "#FFF",
+      borderWidth: 1,
+      borderRadius: 2,
+      borderColor: '#ddd',
+      shadowColor: '#000',
+      shadowOffset: {width:0, height:2},
+      shadowOpacity: 0.1,
+      shadowRadius: 2,
+      elevation: 1,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 10,
     },
-    stretch: {
-      width: 150,
-      height: 150,
-      borderRadius: 30,      
-    },
-    textStyle:{
-      flex:1,
-      flexDirection:'column',
-      alignItems:'center',
-      marginTop:20
-    },
-    content:{
-      flex: 1,
+    subStyle:{
+      borderBottomWidth: 1,
+      padding: 5,
+      backgroundColor: "#fff",
+      justifyContent: 'flex-start',
       flexDirection: 'column',
-      alignItems:'center' 
+      borderColor: '#ddd',
+      position: 'relative'
+    },
+    listItemContainer:{
+      height:38,
+      borderRadius:12,
+      borderWidth:1,
+      borderColor:'#979797',
+      margin:14,
+      position:'relative',
+      backgroundColor: '#79CDCD',
+  
+      flexDirection:'row',
+      alignItems:'center',
+      paddingLeft:31,
     },
     icon:{
       flex:1,
