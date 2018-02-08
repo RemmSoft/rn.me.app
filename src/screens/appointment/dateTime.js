@@ -51,26 +51,6 @@ export default class DateTime extends Component {
     this.changeDate();
   }
 
-  componentWillMount(){
-    const {data,ownerId} = this.props.navigation.state.params;
-    let leadsRef = firebase.database().ref('berbers/'+ownerId+'/'+data.key+'/reservationId/');
-    leadsRef.on('value', (snapshot)=> {
-    let childData=[];
-        snapshot.forEach((childSnapshot)=> {
-            childData.push({
-            selectTime: childSnapshot.val().time,
-            datetime: childSnapshot.val().date,
-            _key: childSnapshot.key,
-            });
-            for(let row of rows){
-              if(childSnapshot.val().time===row.text){
-                row.disabled=true;
-              }
-          }
-        });
-    });
-  }
-
   Time() {
     return rows.map((news, i)=>{
       return(
