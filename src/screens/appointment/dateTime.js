@@ -93,6 +93,7 @@ export default class DateTime extends Component {
         date:datetime
       });
     }
+    this.props.navigation.navigate('Reservations')
   }
 
   changeDate(){   
