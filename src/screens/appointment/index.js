@@ -24,13 +24,15 @@ export default class Appointment extends Component {
       leadsRef.on('value', (snapshot)=> {
         let childData=[];
             snapshot.forEach((childSnapshot)=> {
-                childData.push({
-                name: childSnapshot.val().name,
-                phone: childSnapshot.val().phone,
-                key: childSnapshot.key,
-                owner: data.owner,
-                ownerPhone: data.ownerPhone,
-                });
+              if(childSnapshot.key!=="reservationId"){
+                  childData.push({
+                  name: childSnapshot.val().name,
+                  phone: childSnapshot.val().phone,
+                  key: childSnapshot.key,
+                  owner: data.owner,
+                  ownerPhone: data.ownerPhone,
+                  });
+              }
             });
           this.setState({
             itemDataSource: this.state.itemDataSource.cloneWithRows(childData)

@@ -7,12 +7,12 @@ import styles from "./styles";
 export default class Employee extends Component {
   constructor(props) {
     super(props);
-    this.state = {name: '', phone: ''}
+    this.state = {name: '', phone: '' }
     this.onSaveEmployee= this.onSaveEmployee.bind(this)
   }
-   
+  
   onSaveEmployee() {
-    const { name, phone} = this.state;
+    const { name, phone } = this.state;
 
     let userId=firebase.auth().currentUser.uid;
     
@@ -20,7 +20,7 @@ export default class Employee extends Component {
         name: name,
         phone: phone
     });
-
+    
     this.props.navigation.navigate('EmployeeList');
   }
 
