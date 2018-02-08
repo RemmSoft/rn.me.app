@@ -25,11 +25,13 @@ export default class EmployeeList extends Component {
     leadsRef.on('value', (snapshot)=> {
     let childData=[];
         snapshot.forEach((childSnapshot)=> {
+          if(childSnapshot.key!=="reservationId"){
             childData.push({
-            name: childSnapshot.val().name,
-            phone: childSnapshot.val().phone,
-            _key: childSnapshot.key
+              name: childSnapshot.val().name,
+              phone: childSnapshot.val().phone,
+              _key: childSnapshot.key
             });
+          }
         });
 
       this.setState({

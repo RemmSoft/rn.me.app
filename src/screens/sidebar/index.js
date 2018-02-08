@@ -17,9 +17,15 @@ const datas = [
     bg: "#C5F442"
   },
   {
-    name: "Profil",
+    name: "Profilim",
     route: "Profile",
     icon: "phone-portrait",
+    bg: "#C5F442"
+  },
+  {
+    name: "Randevularım",
+    route: "Reservations",
+    icon: "exit",
     bg: "#C5F442"
   },
   {
@@ -48,7 +54,7 @@ class SideBar extends Component {
       {
        for (let data of datas) 
        {
-        if(data.name==="Profil")
+        if(data.name==="Profilim")
           data.route="Profile";
        }
       }
@@ -56,7 +62,7 @@ class SideBar extends Component {
       {
         for (let data of datas) 
        {
-         if(data.name==="Profil")
+         if(data.name==="Profilim")
           data.route="ProfilBerber";      
        }
       }
@@ -64,7 +70,7 @@ class SideBar extends Component {
   }
 
   router(data){
-    if(data.name==="Profil")
+    if(data.name==="Profilim")
     {
       this.props.navigation.navigate(data.route);
     }
@@ -72,6 +78,10 @@ class SideBar extends Component {
     {
       this.props.navigation.navigate("Dashboard");
     }
+    else if(data.name==="Randevularım")
+    {
+      this.props.navigation.navigate("Reservations");
+    } 
     else if(data.name==="Çıkış")
     {
         this.logout();

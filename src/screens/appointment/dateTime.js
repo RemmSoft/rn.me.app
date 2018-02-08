@@ -49,7 +49,6 @@ export default class DateTime extends Component {
 
   componentWillMount(){
     const {data,ownerId} = this.props.navigation.state.params;
-    console.log(data.key);
     let leadsRef = firebase.database().ref('berbers/'+ownerId+'/'+data.key+'/reservationId/');
     leadsRef.on('value', (snapshot)=> {
     let childData=[];
@@ -60,8 +59,6 @@ export default class DateTime extends Component {
             _key: childSnapshot.key,
             });
             for(let row of rows){
-              console.log(childSnapshot.val());
-              console.log(row.text);
               if(childSnapshot.val().time===row.text){
                 row.disabled=true;
               }
@@ -104,7 +101,8 @@ export default class DateTime extends Component {
         time:selectTime,
         date:datetime
       });
-    }else if(ownerId===data.key){
+    }
+    else if(ownerId===data.key){
         firebase.database().ref('berbers/'+ownerId+'/reservationId/'+key).set({
         time:selectTime,
         date:datetime

@@ -42,6 +42,11 @@ export default class Register extends Component {
       email: mail
     });
 
+    firebase.database().ref('berbers/' + userId + "/reservationId").set({    
+      name: name,
+      phone: phone,
+    });
+
     firebase.database().ref('stores/' + userId).set({
       workPlace: workPlace,
       workAddress: workAddress,
